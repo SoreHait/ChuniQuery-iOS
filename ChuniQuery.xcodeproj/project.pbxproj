@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14029233B2DA228291DECE60 /* Pods_ChuniQueryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8FE5851B48E9E2D0DA2C3D /* Pods_ChuniQueryTests.framework */; };
+		30C10A57EFEABF72FC411F5A /* Pods_ChuniQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6F9EC995896B4805AC6CDA /* Pods_ChuniQuery.framework */; };
+		451E4064CE832EF6AD22D1B4 /* Pods_ChuniQuery_ChuniQueryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B76A327A0A4FCDFADEAA1D4D /* Pods_ChuniQuery_ChuniQueryUITests.framework */; };
 		7F315CC227368EF900508ABB /* ChuniQueryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CC127368EF900508ABB /* ChuniQueryApp.swift */; };
 		7F315CC427368EF900508ABB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CC327368EF900508ABB /* ContentView.swift */; };
 		7F315CC627368EF900508ABB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F315CC527368EF900508ABB /* Assets.xcassets */; };
@@ -16,6 +19,7 @@
 		7F315CD827368EF900508ABB /* ChuniQueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CD727368EF900508ABB /* ChuniQueryTests.swift */; };
 		7F315CE227368EF900508ABB /* ChuniQueryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CE127368EF900508ABB /* ChuniQueryUITests.swift */; };
 		7F315CE427368EF900508ABB /* ChuniQueryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CE327368EF900508ABB /* ChuniQueryUITestsLaunchTests.swift */; };
+		7F70FF0B2737DA6100B416BF /* MinimeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F70FF0A2737DA6100B416BF /* MinimeQuery.swift */; };
 		7F8DF0072736F60700C14208 /* PlayerDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DF0062736F60700C14208 /* PlayerDataView.swift */; };
 		7F8DF0092736FBAE00C14208 /* B30View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DF0082736FBAE00C14208 /* B30View.swift */; };
 		7F8DF00B2736FC0A00C14208 /* R10View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DF00A2736FC0A00C14208 /* R10View.swift */; };
@@ -46,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0459DB99B19927C60351B96E /* Pods-ChuniQueryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQueryTests.release.xcconfig"; path = "Target Support Files/Pods-ChuniQueryTests/Pods-ChuniQueryTests.release.xcconfig"; sourceTree = "<group>"; };
+		55D1B51F69AF0BBCD7860AA9 /* Pods-ChuniQuery-ChuniQueryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery-ChuniQueryUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChuniQuery-ChuniQueryUITests/Pods-ChuniQuery-ChuniQueryUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5B71983A480E1F4A442F954C /* Pods-ChuniQueryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQueryTests.debug.xcconfig"; path = "Target Support Files/Pods-ChuniQueryTests/Pods-ChuniQueryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7F315CBE27368EF900508ABB /* ChuniQuery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChuniQuery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F315CC127368EF900508ABB /* ChuniQueryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuniQueryApp.swift; sourceTree = "<group>"; };
 		7F315CC327368EF900508ABB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +65,7 @@
 		7F315CDD27368EF900508ABB /* ChuniQueryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChuniQueryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F315CE127368EF900508ABB /* ChuniQueryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuniQueryUITests.swift; sourceTree = "<group>"; };
 		7F315CE327368EF900508ABB /* ChuniQueryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuniQueryUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7F70FF0A2737DA6100B416BF /* MinimeQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimeQuery.swift; sourceTree = "<group>"; };
 		7F8DF0062736F60700C14208 /* PlayerDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDataView.swift; sourceTree = "<group>"; };
 		7F8DF0082736FBAE00C14208 /* B30View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B30View.swift; sourceTree = "<group>"; };
 		7F8DF00A2736FC0A00C14208 /* R10View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R10View.swift; sourceTree = "<group>"; };
@@ -68,6 +76,12 @@
 		7F8DF0142737086500C14208 /* ChangeTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamView.swift; sourceTree = "<group>"; };
 		7F8DF0162737098200C14208 /* ChangeIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeIDView.swift; sourceTree = "<group>"; };
 		7F8DF01827370C6900C14208 /* SongCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCard.swift; sourceTree = "<group>"; };
+		7F8FE5851B48E9E2D0DA2C3D /* Pods_ChuniQueryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuniQueryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		800D547CB826F24D0ABD839F /* Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig"; path = "Target Support Files/Pods-ChuniQuery-ChuniQueryUITests/Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig"; sourceTree = "<group>"; };
+		936381CBC75EB09A73C09956 /* Pods-ChuniQuery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery.debug.xcconfig"; path = "Target Support Files/Pods-ChuniQuery/Pods-ChuniQuery.debug.xcconfig"; sourceTree = "<group>"; };
+		B76A327A0A4FCDFADEAA1D4D /* Pods_ChuniQuery_ChuniQueryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuniQuery_ChuniQueryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED6F9EC995896B4805AC6CDA /* Pods_ChuniQuery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuniQuery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDE5BA26C0A3A3361BD8305F /* Pods-ChuniQuery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery.release.xcconfig"; path = "Target Support Files/Pods-ChuniQuery/Pods-ChuniQuery.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C10A57EFEABF72FC411F5A /* Pods_ChuniQuery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14029233B2DA228291DECE60 /* Pods_ChuniQueryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				451E4064CE832EF6AD22D1B4 /* Pods_ChuniQuery_ChuniQueryUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +119,8 @@
 				7F315CD627368EF900508ABB /* ChuniQueryTests */,
 				7F315CE027368EF900508ABB /* ChuniQueryUITests */,
 				7F315CBF27368EF900508ABB /* Products */,
+				DDA8F8E57E191E2AD0F3DE13 /* Pods */,
+				B24077D44127B20713DB26EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +137,7 @@
 		7F315CC027368EF900508ABB /* ChuniQuery */ = {
 			isa = PBXGroup;
 			children = (
+				7F70FF092737DA3C00B416BF /* Support */,
 				7F8DF0032736BC7F00C14208 /* UI */,
 				7F315CC127368EF900508ABB /* ChuniQueryApp.swift */,
 				7F315CC527368EF900508ABB /* Assets.xcassets */,
@@ -153,6 +173,14 @@
 			path = ChuniQueryUITests;
 			sourceTree = "<group>";
 		};
+		7F70FF092737DA3C00B416BF /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				7F70FF0A2737DA6100B416BF /* MinimeQuery.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		7F8DF0032736BC7F00C14208 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +199,30 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		B24077D44127B20713DB26EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED6F9EC995896B4805AC6CDA /* Pods_ChuniQuery.framework */,
+				B76A327A0A4FCDFADEAA1D4D /* Pods_ChuniQuery_ChuniQueryUITests.framework */,
+				7F8FE5851B48E9E2D0DA2C3D /* Pods_ChuniQueryTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DDA8F8E57E191E2AD0F3DE13 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				936381CBC75EB09A73C09956 /* Pods-ChuniQuery.debug.xcconfig */,
+				FDE5BA26C0A3A3361BD8305F /* Pods-ChuniQuery.release.xcconfig */,
+				55D1B51F69AF0BBCD7860AA9 /* Pods-ChuniQuery-ChuniQueryUITests.debug.xcconfig */,
+				800D547CB826F24D0ABD839F /* Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig */,
+				5B71983A480E1F4A442F954C /* Pods-ChuniQueryTests.debug.xcconfig */,
+				0459DB99B19927C60351B96E /* Pods-ChuniQueryTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,9 +230,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F315CE727368EF900508ABB /* Build configuration list for PBXNativeTarget "ChuniQuery" */;
 			buildPhases = (
+				B114C9CD469A91B02BC95BD8 /* [CP] Check Pods Manifest.lock */,
 				7F315CBA27368EF800508ABB /* Sources */,
 				7F315CBB27368EF800508ABB /* Frameworks */,
 				7F315CBC27368EF800508ABB /* Resources */,
+				AB2AA61FA3799A602A25F192 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -195,6 +249,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F315CEA27368EF900508ABB /* Build configuration list for PBXNativeTarget "ChuniQueryTests" */;
 			buildPhases = (
+				5C2CFAC6C52AE3798F292EE2 /* [CP] Check Pods Manifest.lock */,
 				7F315CCF27368EF900508ABB /* Sources */,
 				7F315CD027368EF900508ABB /* Frameworks */,
 				7F315CD127368EF900508ABB /* Resources */,
@@ -213,9 +268,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F315CED27368EF900508ABB /* Build configuration list for PBXNativeTarget "ChuniQueryUITests" */;
 			buildPhases = (
+				2ADE3CE97548B902D5D3B5B8 /* [CP] Check Pods Manifest.lock */,
 				7F315CD927368EF900508ABB /* Sources */,
 				7F315CDA27368EF900508ABB /* Frameworks */,
 				7F315CDB27368EF900508ABB /* Resources */,
+				07080AC452F1600AE111C708 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -296,6 +353,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		07080AC452F1600AE111C708 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChuniQuery-ChuniQueryUITests/Pods-ChuniQuery-ChuniQueryUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChuniQuery-ChuniQueryUITests/Pods-ChuniQuery-ChuniQueryUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChuniQuery-ChuniQueryUITests/Pods-ChuniQuery-ChuniQueryUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2ADE3CE97548B902D5D3B5B8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChuniQuery-ChuniQueryUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C2CFAC6C52AE3798F292EE2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChuniQueryTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB2AA61FA3799A602A25F192 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChuniQuery/Pods-ChuniQuery-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChuniQuery/Pods-ChuniQuery-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChuniQuery/Pods-ChuniQuery-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B114C9CD469A91B02BC95BD8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChuniQuery-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7F315CBA27368EF800508ABB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -311,6 +471,7 @@
 				7F8DF00F2736FD4F00C14208 /* ModTicketCountView.swift in Sources */,
 				7F8DF0092736FBAE00C14208 /* B30View.swift in Sources */,
 				7F8DF0112736FDE800C14208 /* ChangeServerView.swift in Sources */,
+				7F70FF0B2737DA6100B416BF /* MinimeQuery.swift in Sources */,
 				7F8DF00D2736FCF600C14208 /* RecentPlayView.swift in Sources */,
 				7F8DF00B2736FC0A00C14208 /* R10View.swift in Sources */,
 				7F8DF0072736F60700C14208 /* PlayerDataView.swift in Sources */,
@@ -469,6 +630,7 @@
 		};
 		7F315CE827368EF900508ABB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 936381CBC75EB09A73C09956 /* Pods-ChuniQuery.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -498,6 +660,7 @@
 		};
 		7F315CE927368EF900508ABB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDE5BA26C0A3A3361BD8305F /* Pods-ChuniQuery.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -527,6 +690,7 @@
 		};
 		7F315CEB27368EF900508ABB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B71983A480E1F4A442F954C /* Pods-ChuniQueryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -552,6 +716,7 @@
 		};
 		7F315CEC27368EF900508ABB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0459DB99B19927C60351B96E /* Pods-ChuniQueryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -577,6 +742,7 @@
 		};
 		7F315CEE27368EF900508ABB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55D1B51F69AF0BBCD7860AA9 /* Pods-ChuniQuery-ChuniQueryUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -600,6 +766,7 @@
 		};
 		7F315CEF27368EF900508ABB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 800D547CB826F24D0ABD839F /* Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
