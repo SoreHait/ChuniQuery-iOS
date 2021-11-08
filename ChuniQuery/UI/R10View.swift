@@ -9,7 +9,20 @@ import SwiftUI
 
 struct R10View: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Section {
+                HStack {
+                    Text("Rating")
+                    Spacer()
+                    Text("R10 Rating")
+                        .foregroundColor(.gray)
+                }
+            }
+            ForEach(1..<10) {num in
+                SongCardJudge(number: num)
+            }
+        }
+        .navigationTitle("Recent 10")
     }
 }
 
