@@ -283,8 +283,11 @@ struct MinimeQuery {
         queryer.request(.getAllSongData) { result in
             switch result {
             case let .success(resp):
+                var temp = String(data: resp.data, encoding: .utf8)!
+                let jsonStart = temp.index(temp.startIndex, offsetBy: 16)
+                temp = String(temp[jsonStart...])
                 let decoder = JSONDecoder()
-                rawJson = try? decoder.decode(SongInfoModelRaw.self, from: resp.data)
+                rawJson = try? decoder.decode(SongInfoModelRaw.self, from: temp.data(using: .utf8)!)
                 if rawJson != nil {
                     var middleWare = [String : [String : Any]]()
                     for item in rawJson! {

@@ -9,7 +9,20 @@ import SwiftUI
 
 struct B30View: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Section {
+                HStack {
+                    Text("Rating")
+                    Spacer()
+                    Text("B30 Rating")
+                        .foregroundColor(.gray)
+                }
+            }
+            ForEach(1..<10) { num in
+                SongCardNoJudge(songName: "World Vanquisher", number: num, diff: "Master", score: 1010000, constant: 14.90, rating: 17.90)
+            }
+        }
+        .navigationTitle("Best 30")
     }
 }
 
