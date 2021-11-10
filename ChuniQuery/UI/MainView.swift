@@ -8,14 +8,15 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct MainView: View {
     @Environment(\.managedObjectContext) private var viewContext
 /*
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+        sortDescriptors: []
+    ) private var items: FetchedResults<PersistentData>
 */
+    @State private var playerInfo = [UserDataElements]()
+    
     var body: some View {
         NavigationView {
             List {
@@ -23,12 +24,12 @@ struct ContentView: View {
                     NavigationLink(destination: PlayerDataView()) {
                         VStack {
                             HStack {
-                                Text("队伍名")
+                                Text("?")
                                 Spacer()
-                                Text("等级")
+                                Text("??")
                             }
                             HStack {
-                                Text("用户名")
+                                Text("??")
                                     .font(.title)
                                     .fontWeight(.bold)
                                 Spacer()
@@ -70,7 +71,7 @@ struct ContentView: View {
                 }
                 
                 Section(header: Text("设定")) {
-                    NavigationLink(destination: ChangeIDView()) {
+                    NavigationLink(destination: ChangeCardIDView()) {
                         Text("修改卡号")
                         Spacer()
                         Text("Current ID")
@@ -82,57 +83,21 @@ struct ContentView: View {
                         Text("Current Svr")
                             .foregroundColor(Color.gray)
                     }
+                }
+                Section(footer: Text("请不要频繁使用此功能，以免对服务器造成压力")) {
                     Button(action: {}) {
-                        Text("刷新数据")
+                        Text("刷新曲目数据")
                     }
                 }
             }
             .navigationTitle("ChuniQuery")
+            //.onAppear(perform: getInfo)
         }
     }
-/*
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-*/
 }
-/*
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-*/
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()//.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        MainView()
     }
 }

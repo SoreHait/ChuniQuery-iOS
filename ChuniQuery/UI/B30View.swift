@@ -19,7 +19,7 @@ struct B30View: View {
                 }
             }
             ForEach(1..<10) { num in
-                SongCardNoJudge(songName: "World Vanquisher", number: num, diff: "Master", score: 1010000, constant: 14.90, rating: 17.90)
+                SongCardNoJudge(songName: "World Vanquisher", number: num, diffID: String(num % 4), score: 1010000, constant: 14.90, rating: 17.90)
             }
         }
         .navigationTitle("Best 30")

@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14029233B2DA228291DECE60 /* Pods_ChuniQueryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8FE5851B48E9E2D0DA2C3D /* Pods_ChuniQueryTests.framework */; };
 		30C10A57EFEABF72FC411F5A /* Pods_ChuniQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6F9EC995896B4805AC6CDA /* Pods_ChuniQuery.framework */; };
 		451E4064CE832EF6AD22D1B4 /* Pods_ChuniQuery_ChuniQueryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B76A327A0A4FCDFADEAA1D4D /* Pods_ChuniQuery_ChuniQueryUITests.framework */; };
+		7EA79CE6C949A2FEFBF626F4 /* Pods_ChuniQuery_ChuniQueryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0949932A749EDF11CAED6901 /* Pods_ChuniQuery_ChuniQueryTests.framework */; };
 		7F315CC227368EF900508ABB /* ChuniQueryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CC127368EF900508ABB /* ChuniQueryApp.swift */; };
-		7F315CC427368EF900508ABB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CC327368EF900508ABB /* ContentView.swift */; };
+		7F315CC427368EF900508ABB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CC327368EF900508ABB /* MainView.swift */; };
 		7F315CC627368EF900508ABB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F315CC527368EF900508ABB /* Assets.xcassets */; };
 		7F315CC927368EF900508ABB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F315CC827368EF900508ABB /* Preview Assets.xcassets */; };
 		7F315CCB27368EF900508ABB /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CCA27368EF900508ABB /* Persistence.swift */; };
-		7F315CCE27368EF900508ABB /* ChuniQuery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CCC27368EF900508ABB /* ChuniQuery.xcdatamodeld */; };
 		7F315CD827368EF900508ABB /* ChuniQueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CD727368EF900508ABB /* ChuniQueryTests.swift */; };
 		7F315CE227368EF900508ABB /* ChuniQueryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CE127368EF900508ABB /* ChuniQueryUITests.swift */; };
 		7F315CE427368EF900508ABB /* ChuniQueryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CE327368EF900508ABB /* ChuniQueryUITestsLaunchTests.swift */; };
@@ -28,9 +27,10 @@
 		7F8DF0112736FDE800C14208 /* ChangeServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DF0102736FDE800C14208 /* ChangeServerView.swift */; };
 		7F8DF0132737017400C14208 /* ChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DF0122737017400C14208 /* ChangeNameView.swift */; };
 		7F8DF0152737086500C14208 /* ChangeTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DF0142737086500C14208 /* ChangeTeamView.swift */; };
-		7F8DF0172737098200C14208 /* ChangeIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DF0162737098200C14208 /* ChangeIDView.swift */; };
+		7F8DF0172737098200C14208 /* ChangeCardIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DF0162737098200C14208 /* ChangeCardIDView.swift */; };
 		7F8DF01927370C6900C14208 /* SongCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DF01827370C6900C14208 /* SongCard.swift */; };
 		7FB4DD522738D01F003843B3 /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4DD512738D01F003843B3 /* JSONModel.swift */; };
+		7FC798F0273A5DEB00B6939E /* ChuniQuery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7FC798EE273A5DEB00B6939E /* ChuniQuery.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,15 +52,16 @@
 
 /* Begin PBXFileReference section */
 		0459DB99B19927C60351B96E /* Pods-ChuniQueryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQueryTests.release.xcconfig"; path = "Target Support Files/Pods-ChuniQueryTests/Pods-ChuniQueryTests.release.xcconfig"; sourceTree = "<group>"; };
+		05046E6A8CD1BE881083A2E1 /* Pods-ChuniQuery-ChuniQueryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery-ChuniQueryTests.release.xcconfig"; path = "Target Support Files/Pods-ChuniQuery-ChuniQueryTests/Pods-ChuniQuery-ChuniQueryTests.release.xcconfig"; sourceTree = "<group>"; };
+		0949932A749EDF11CAED6901 /* Pods_ChuniQuery_ChuniQueryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuniQuery_ChuniQueryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D1B51F69AF0BBCD7860AA9 /* Pods-ChuniQuery-ChuniQueryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery-ChuniQueryUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChuniQuery-ChuniQueryUITests/Pods-ChuniQuery-ChuniQueryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B71983A480E1F4A442F954C /* Pods-ChuniQueryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQueryTests.debug.xcconfig"; path = "Target Support Files/Pods-ChuniQueryTests/Pods-ChuniQueryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7F315CBE27368EF900508ABB /* ChuniQuery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChuniQuery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F315CC127368EF900508ABB /* ChuniQueryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuniQueryApp.swift; sourceTree = "<group>"; };
-		7F315CC327368EF900508ABB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7F315CC327368EF900508ABB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7F315CC527368EF900508ABB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F315CC827368EF900508ABB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7F315CCA27368EF900508ABB /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		7F315CCD27368EF900508ABB /* ChuniQuery.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChuniQuery.xcdatamodel; sourceTree = "<group>"; };
 		7F315CD327368EF900508ABB /* ChuniQueryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChuniQueryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F315CD727368EF900508ABB /* ChuniQueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuniQueryTests.swift; sourceTree = "<group>"; };
 		7F315CDD27368EF900508ABB /* ChuniQueryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChuniQueryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,12 +76,13 @@
 		7F8DF0102736FDE800C14208 /* ChangeServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeServerView.swift; sourceTree = "<group>"; };
 		7F8DF0122737017400C14208 /* ChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameView.swift; sourceTree = "<group>"; };
 		7F8DF0142737086500C14208 /* ChangeTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamView.swift; sourceTree = "<group>"; };
-		7F8DF0162737098200C14208 /* ChangeIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeIDView.swift; sourceTree = "<group>"; };
+		7F8DF0162737098200C14208 /* ChangeCardIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCardIDView.swift; sourceTree = "<group>"; };
 		7F8DF01827370C6900C14208 /* SongCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCard.swift; sourceTree = "<group>"; };
-		7F8FE5851B48E9E2D0DA2C3D /* Pods_ChuniQueryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuniQueryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB4DD512738D01F003843B3 /* JSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONModel.swift; sourceTree = "<group>"; };
+		7FC798EF273A5DEB00B6939E /* ChuniQuery.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChuniQuery.xcdatamodel; sourceTree = "<group>"; };
 		800D547CB826F24D0ABD839F /* Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig"; path = "Target Support Files/Pods-ChuniQuery-ChuniQueryUITests/Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		936381CBC75EB09A73C09956 /* Pods-ChuniQuery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery.debug.xcconfig"; path = "Target Support Files/Pods-ChuniQuery/Pods-ChuniQuery.debug.xcconfig"; sourceTree = "<group>"; };
+		A8D13F1A892911AEDC850D91 /* Pods-ChuniQuery-ChuniQueryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery-ChuniQueryTests.debug.xcconfig"; path = "Target Support Files/Pods-ChuniQuery-ChuniQueryTests/Pods-ChuniQuery-ChuniQueryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B76A327A0A4FCDFADEAA1D4D /* Pods_ChuniQuery_ChuniQueryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuniQuery_ChuniQueryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED6F9EC995896B4805AC6CDA /* Pods_ChuniQuery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuniQuery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDE5BA26C0A3A3361BD8305F /* Pods-ChuniQuery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery.release.xcconfig"; path = "Target Support Files/Pods-ChuniQuery/Pods-ChuniQuery.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14029233B2DA228291DECE60 /* Pods_ChuniQueryTests.framework in Frameworks */,
+				7EA79CE6C949A2FEFBF626F4 /* Pods_ChuniQuery_ChuniQueryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,12 +141,11 @@
 		7F315CC027368EF900508ABB /* ChuniQuery */ = {
 			isa = PBXGroup;
 			children = (
+				7FC798EA273A31B000B6939E /* DataModel */,
 				7F70FF092737DA3C00B416BF /* Support */,
 				7F8DF0032736BC7F00C14208 /* UI */,
 				7F315CC127368EF900508ABB /* ChuniQueryApp.swift */,
 				7F315CC527368EF900508ABB /* Assets.xcassets */,
-				7F315CCA27368EF900508ABB /* Persistence.swift */,
-				7F315CCC27368EF900508ABB /* ChuniQuery.xcdatamodeld */,
 				7F315CC727368EF900508ABB /* Preview Content */,
 			);
 			path = ChuniQuery;
@@ -187,7 +188,7 @@
 		7F8DF0032736BC7F00C14208 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				7F315CC327368EF900508ABB /* ContentView.swift */,
+				7F315CC327368EF900508ABB /* MainView.swift */,
 				7F8DF0062736F60700C14208 /* PlayerDataView.swift */,
 				7F8DF0082736FBAE00C14208 /* B30View.swift */,
 				7F8DF00A2736FC0A00C14208 /* R10View.swift */,
@@ -196,10 +197,19 @@
 				7F8DF0102736FDE800C14208 /* ChangeServerView.swift */,
 				7F8DF0122737017400C14208 /* ChangeNameView.swift */,
 				7F8DF0142737086500C14208 /* ChangeTeamView.swift */,
-				7F8DF0162737098200C14208 /* ChangeIDView.swift */,
+				7F8DF0162737098200C14208 /* ChangeCardIDView.swift */,
 				7F8DF01827370C6900C14208 /* SongCard.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		7FC798EA273A31B000B6939E /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				7FC798EE273A5DEB00B6939E /* ChuniQuery.xcdatamodeld */,
+				7F315CCA27368EF900508ABB /* Persistence.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		B24077D44127B20713DB26EA /* Frameworks */ = {
@@ -207,7 +217,7 @@
 			children = (
 				ED6F9EC995896B4805AC6CDA /* Pods_ChuniQuery.framework */,
 				B76A327A0A4FCDFADEAA1D4D /* Pods_ChuniQuery_ChuniQueryUITests.framework */,
-				7F8FE5851B48E9E2D0DA2C3D /* Pods_ChuniQueryTests.framework */,
+				0949932A749EDF11CAED6901 /* Pods_ChuniQuery_ChuniQueryTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -221,6 +231,8 @@
 				800D547CB826F24D0ABD839F /* Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig */,
 				5B71983A480E1F4A442F954C /* Pods-ChuniQueryTests.debug.xcconfig */,
 				0459DB99B19927C60351B96E /* Pods-ChuniQueryTests.release.xcconfig */,
+				A8D13F1A892911AEDC850D91 /* Pods-ChuniQuery-ChuniQueryTests.debug.xcconfig */,
+				05046E6A8CD1BE881083A2E1 /* Pods-ChuniQuery-ChuniQueryTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -255,6 +267,7 @@
 				7F315CCF27368EF900508ABB /* Sources */,
 				7F315CD027368EF900508ABB /* Frameworks */,
 				7F315CD127368EF900508ABB /* Resources */,
+				0A779D6E578937BF8BFC841A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -373,6 +386,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChuniQuery-ChuniQueryUITests/Pods-ChuniQuery-ChuniQueryUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		0A779D6E578937BF8BFC841A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChuniQuery-ChuniQueryTests/Pods-ChuniQuery-ChuniQueryTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChuniQuery-ChuniQueryTests/Pods-ChuniQuery-ChuniQueryTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChuniQuery-ChuniQueryTests/Pods-ChuniQuery-ChuniQueryTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2ADE3CE97548B902D5D3B5B8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,7 +440,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ChuniQueryTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ChuniQuery-ChuniQueryTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -463,19 +493,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F315CCE27368EF900508ABB /* ChuniQuery.xcdatamodeld in Sources */,
 				7F8DF0132737017400C14208 /* ChangeNameView.swift in Sources */,
 				7F8DF01927370C6900C14208 /* SongCard.swift in Sources */,
 				7F315CCB27368EF900508ABB /* Persistence.swift in Sources */,
-				7F8DF0172737098200C14208 /* ChangeIDView.swift in Sources */,
+				7F8DF0172737098200C14208 /* ChangeCardIDView.swift in Sources */,
 				7FB4DD522738D01F003843B3 /* JSONModel.swift in Sources */,
-				7F315CC427368EF900508ABB /* ContentView.swift in Sources */,
+				7F315CC427368EF900508ABB /* MainView.swift in Sources */,
 				7F315CC227368EF900508ABB /* ChuniQueryApp.swift in Sources */,
 				7F8DF00F2736FD4F00C14208 /* ModTicketCountView.swift in Sources */,
 				7F8DF0092736FBAE00C14208 /* B30View.swift in Sources */,
 				7F8DF0112736FDE800C14208 /* ChangeServerView.swift in Sources */,
 				7F70FF0B2737DA6100B416BF /* MinimeQuery.swift in Sources */,
 				7F8DF00D2736FCF600C14208 /* RecentPlayView.swift in Sources */,
+				7FC798F0273A5DEB00B6939E /* ChuniQuery.xcdatamodeld in Sources */,
 				7F8DF00B2736FC0A00C14208 /* R10View.swift in Sources */,
 				7F8DF0072736F60700C14208 /* PlayerDataView.swift in Sources */,
 				7F8DF0152737086500C14208 /* ChangeTeamView.swift in Sources */,
@@ -642,7 +672,15 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ChuniQuery/Preview Content\"";
 				DEVELOPMENT_TEAM = 5XLQ7SX5MT;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers\"",
+				);
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -672,7 +710,15 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ChuniQuery/Preview Content\"";
 				DEVELOPMENT_TEAM = 5XLQ7SX5MT;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers\"",
+				);
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -693,13 +739,17 @@
 		};
 		7F315CEB27368EF900508ABB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B71983A480E1F4A442F954C /* Pods-ChuniQueryTests.debug.xcconfig */;
+			baseConfigurationReference = A8D13F1A892911AEDC850D91 /* Pods-ChuniQuery-ChuniQueryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5XLQ7SX5MT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -719,13 +769,17 @@
 		};
 		7F315CEC27368EF900508ABB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0459DB99B19927C60351B96E /* Pods-ChuniQueryTests.release.xcconfig */;
+			baseConfigurationReference = 05046E6A8CD1BE881083A2E1 /* Pods-ChuniQuery-ChuniQueryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5XLQ7SX5MT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -751,6 +805,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5XLQ7SX5MT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -775,6 +833,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5XLQ7SX5MT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -833,12 +895,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		7F315CCC27368EF900508ABB /* ChuniQuery.xcdatamodeld */ = {
+		7FC798EE273A5DEB00B6939E /* ChuniQuery.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				7F315CCD27368EF900508ABB /* ChuniQuery.xcdatamodel */,
+				7FC798EF273A5DEB00B6939E /* ChuniQuery.xcdatamodel */,
 			);
-			currentVersion = 7F315CCD27368EF900508ABB /* ChuniQuery.xcdatamodel */;
+			currentVersion = 7FC798EF273A5DEB00B6939E /* ChuniQuery.xcdatamodel */;
 			path = ChuniQuery.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

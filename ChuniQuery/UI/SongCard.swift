@@ -7,10 +7,93 @@
 
 import SwiftUI
 
+private func getRankByScore(_ score: Int) -> String {
+    switch score {
+    case 1009000...1010000:
+        return "SSS+"
+    case 1007500..<1009000:
+        return "SSS"
+    case 1005000..<1007500:
+        return "SS+"
+    case 1000000..<1005000:
+        return "SS"
+    case 990000..<1000000:
+        return "S+"
+    case 975000..<990000:
+        return "S"
+    case 950000..<975000:
+        return "AAA"
+    case 925000..<950000:
+        return "AA"
+    case 900000..<925000:
+        return "A"
+    case 800000..<900000:
+        return "BBB"
+    case 700000..<800000:
+        return "BB"
+    case 600000..<700000:
+        return "B"
+    case 500000..<600000:
+        return "C"
+    case 0..<500000:
+        return "D"
+    default:
+        return "???"
+    }
+}
+
+private func getColorByScore(_ score: Int) -> Color {
+    switch score {
+    case 975000...1010000:
+        return .yellow
+    case 900000..<975000:
+        return .orange
+    case 600000..<900000:
+        return .teal
+    case 500000..<600000:
+        return .brown
+    case 0..<500000:
+        return .gray
+    default:
+        return .black
+    }
+}
+
+private func getDiffByID(_ id: String) -> String {
+    switch id {
+    case "0":
+        return "BASIC"
+    case "1":
+        return "ADVANCED"
+    case "2":
+        return "EXPERT"
+    case "3":
+        return "MASTER"
+    default:
+        return "???"
+    }
+}
+
+private func getDiffColorByID(_ id: String) -> Color {
+    switch id {
+    case "0":
+        return .green
+    case "1":
+        return .yellow
+    case "2":
+        return .red
+    case "3":
+        return .purple
+    default:
+        return .black
+    }
+
+}
+
 struct SongCardJudge: View {
     var songName: String
     var number: Int
-    var diff: String
+    var diffID: String
     var score: Int
     var constant: Double
     var rating: Double
@@ -21,53 +104,19 @@ struct SongCardJudge: View {
     var MCount: Int
     
     var rank: String {
-        switch score {
-        case 1009000...1010000:
-            return "SSS+"
-        case 1007500..<1009000:
-            return "SSS"
-        case 1005000..<1007500:
-            return "SS+"
-        case 1000000..<1005000:
-            return "SS"
-        case 990000..<1000000:
-            return "S+"
-        case 975000..<990000:
-            return "S"
-        case 950000..<975000:
-            return "AAA"
-        case 925000..<950000:
-            return "AA"
-        case 900000..<925000:
-            return "A"
-        case 800000..<900000:
-            return "BBB"
-        case 700000..<800000:
-            return "BB"
-        case 600000..<700000:
-            return "B"
-        case 500000..<600000:
-            return "C"
-        case 0..<500000:
-            return "D"
-        default:
-            return "???"
-        }
+        getRankByScore(score)
     }
     
     var rankColor: Color {
-        switch score {
-        case 975000...1010000:
-            return .yellow
-        case 900000..<975000:
-            return .orange
-        case 600000..<900000:
-            return .cyan
-        case 0..<600000:
-            return .gray
-        default:
-            return .black
-        }
+        getColorByScore(score)
+    }
+    
+    var diff: String {
+        getDiffByID(diffID)
+    }
+    
+    var diffColor: Color {
+        getDiffColorByID(diffID)
     }
     
     var body: some View {
@@ -90,7 +139,7 @@ struct SongCardJudge: View {
                         .padding(.horizontal, 8.0)
                         .background(
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.purple)
+                                .fill(diffColor)
                         )
                     Text(rank)
                         .font(.subheadline)
@@ -184,59 +233,25 @@ struct SongCardJudge: View {
 struct SongCardNoJudge: View {
     var songName: String
     var number: Int
-    var diff: String
+    var diffID: String
     var score: Int
     var constant: Double
     var rating: Double
     
     var rank: String {
-        switch score {
-        case 1009000...1010000:
-            return "SSS+"
-        case 1007500..<1009000:
-            return "SSS"
-        case 1005000..<1007500:
-            return "SS+"
-        case 1000000..<1005000:
-            return "SS"
-        case 990000..<1000000:
-            return "S+"
-        case 975000..<990000:
-            return "S"
-        case 950000..<975000:
-            return "AAA"
-        case 925000..<950000:
-            return "AA"
-        case 900000..<925000:
-            return "A"
-        case 800000..<900000:
-            return "BBB"
-        case 700000..<800000:
-            return "BB"
-        case 600000..<700000:
-            return "B"
-        case 500000..<600000:
-            return "C"
-        case 0..<500000:
-            return "D"
-        default:
-            return "???"
-        }
+        getRankByScore(score)
     }
     
     var rankColor: Color {
-        switch score {
-        case 975000...1010000:
-            return .yellow
-        case 900000..<975000:
-            return .orange
-        case 600000..<900000:
-            return .cyan
-        case 0..<600000:
-            return .gray
-        default:
-            return .black
-        }
+        getColorByScore(score)
+    }
+    
+    var diff: String {
+        getDiffByID(diffID)
+    }
+    
+    var diffColor: Color {
+        getDiffColorByID(diffID)
     }
     
     var body: some View {
@@ -259,7 +274,7 @@ struct SongCardNoJudge: View {
                         .padding(.horizontal, 8.0)
                         .background(
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.purple)
+                                .fill(diffColor)
                         )
                     Text(rank)
                         .font(.subheadline)
@@ -307,8 +322,8 @@ struct SongCardNoJudge: View {
 struct SongCard_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SongCardJudge(songName: "World Vanquisher", number: 1, diff: "MASTER", score: 1009750, constant: 14.90, rating: 17.90, playTime: "2077-11-11\n20:28:37", JCcount: 3499, JCount: 1, ACount: 0, MCount: 0)
-            SongCardNoJudge(songName: "World Vanquisher", number: 1, diff: "MASTER", score: 1009750, constant: 14.90, rating: 17.90)
+            SongCardJudge(songName: "World Vanquisher", number: 1, diffID: "0", score: 1009750, constant: 14.90, rating: 17.90, playTime: "2077-11-11\n20:28:37", JCcount: 3499, JCount: 1, ACount: 0, MCount: 0)
+            SongCardNoJudge(songName: "World Vanquisher", number: 1, diffID: "2", score: 1009750, constant: 14.90, rating: 17.90)
         }
     }
 }
