@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum MinimeSupportAPI {
-    case getPlayerInfo(cardID: String)
+    case getUserData(cardID: String)
     case getMusicInfo(cardID: String)
     case getPlayLog(cardID: String)
     case getGeneralData(cardID: String)
@@ -25,7 +25,7 @@ extension MinimeSupportAPI: TargetType {
     }
     var path: String {
         switch self {
-        case .getPlayerInfo(_), .getMusicInfo(_), .getPlayLog(_), .getGeneralData(_):
+        case .getUserData(_), .getMusicInfo(_), .getPlayLog(_), .getGeneralData(_):
             return "/query"
         
         case .getItems(_), .modItems(_, _, _):
@@ -40,7 +40,7 @@ extension MinimeSupportAPI: TargetType {
     }
     var task: Task {
         switch self {
-        case let .getPlayerInfo(cardID):
+        case let .getUserData(cardID):
             return .requestParameters(
                 parameters: [
                     "table": "cm_user_data",
@@ -142,11 +142,12 @@ extension RediveEstertionAPI: TargetType {
     }
 }
 
+/* DEPRECATED
 struct MinimeQuery {
     static func getPlayerInfo(cardID: String) -> UserDataModel? {
         let queryer = MoyaProvider<MinimeSupportAPI>()
         var retJson: UserDataModel?
-        queryer.request(.getPlayerInfo(cardID: cardID)) { result in
+        queryer.request(.getUserData(cardID: cardID)) { result in
             switch result {
             case let .success(resp):
                 let decoder = JSONDecoder()
@@ -332,3 +333,4 @@ struct MinimeQuery {
         return retJson
     }
 }
+*/

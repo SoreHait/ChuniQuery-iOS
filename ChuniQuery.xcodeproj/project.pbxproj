@@ -10,6 +10,7 @@
 		30C10A57EFEABF72FC411F5A /* Pods_ChuniQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6F9EC995896B4805AC6CDA /* Pods_ChuniQuery.framework */; };
 		451E4064CE832EF6AD22D1B4 /* Pods_ChuniQuery_ChuniQueryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B76A327A0A4FCDFADEAA1D4D /* Pods_ChuniQuery_ChuniQueryUITests.framework */; };
 		7EA79CE6C949A2FEFBF626F4 /* Pods_ChuniQuery_ChuniQueryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0949932A749EDF11CAED6901 /* Pods_ChuniQuery_ChuniQueryTests.framework */; };
+		7F1FCD2F273C514400298BCF /* RainbowRatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1FCD2E273C514400298BCF /* RainbowRatingText.swift */; };
 		7F315CC227368EF900508ABB /* ChuniQueryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CC127368EF900508ABB /* ChuniQueryApp.swift */; };
 		7F315CC427368EF900508ABB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F315CC327368EF900508ABB /* MainView.swift */; };
 		7F315CC627368EF900508ABB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F315CC527368EF900508ABB /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		0949932A749EDF11CAED6901 /* Pods_ChuniQuery_ChuniQueryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuniQuery_ChuniQueryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D1B51F69AF0BBCD7860AA9 /* Pods-ChuniQuery-ChuniQueryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery-ChuniQueryUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChuniQuery-ChuniQueryUITests/Pods-ChuniQuery-ChuniQueryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B71983A480E1F4A442F954C /* Pods-ChuniQueryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQueryTests.debug.xcconfig"; path = "Target Support Files/Pods-ChuniQueryTests/Pods-ChuniQueryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7F1FCD2E273C514400298BCF /* RainbowRatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowRatingText.swift; sourceTree = "<group>"; };
 		7F315CBE27368EF900508ABB /* ChuniQuery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChuniQuery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F315CC127368EF900508ABB /* ChuniQueryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuniQueryApp.swift; sourceTree = "<group>"; };
 		7F315CC327368EF900508ABB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				7F8DF0142737086500C14208 /* ChangeTeamView.swift */,
 				7F8DF0162737098200C14208 /* ChangeCardIDView.swift */,
 				7F8DF01827370C6900C14208 /* SongCard.swift */,
+				7F1FCD2E273C514400298BCF /* RainbowRatingText.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				7F8DF0132737017400C14208 /* ChangeNameView.swift in Sources */,
 				7F8DF01927370C6900C14208 /* SongCard.swift in Sources */,
 				7F315CCB27368EF900508ABB /* Persistence.swift in Sources */,
+				7F1FCD2F273C514400298BCF /* RainbowRatingText.swift in Sources */,
 				7F8DF0172737098200C14208 /* ChangeCardIDView.swift in Sources */,
 				7FB4DD522738D01F003843B3 /* JSONModel.swift in Sources */,
 				7F315CC427368EF900508ABB /* MainView.swift in Sources */,
