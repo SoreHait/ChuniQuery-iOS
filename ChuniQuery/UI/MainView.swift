@@ -11,37 +11,21 @@ import Moya
 
 struct MainView: View {
     @Environment(\.managedObjectContext) private var viewContext
-/*
+
     @FetchRequest(
         sortDescriptors: []
-    ) private var items: FetchedResults<PersistentData>
-*/
+    ) private var settings: FetchedResults<Settings>
     
-    private func getColorByRating(_ rating: Int) -> Color {
-        switch rating {
-        case 0..<400: // GREEN
-            return .green
-        case 400..<700: // ORANGE
-            return .orange
-        case 700..<1000: // RED
-            return .red
-        case 1000..<1200: // PURPLE
-            return .purple
-        case 1200..<1300: // COPPER
-            return .brown
-        case 1300..<1400: // SILVER
-            return .teal
-        case 1400..<1450: // GOLD
-            return .orange
-        case 1450..<1500: // PLATINUM
-            return .yellow
-        default:
-            return .black
-        }
-    }
+    private let provider = MoyaProvider<MultiTarget>()
+    private let persistenceController = PersistenceController.shared
     
-    @State private var userData: UserDataElements?
-    @State private var userGeneralData: UserGeneralDataElements?
+    @State private var isCardIDNotSet: Bool = true
+    @State private var isUserDataFetched: Bool = false
+    @State private var isUserGeneralDataFetched: Bool = false
+    @State private var userName: String?
+    @State private var userTeamName: String?
+    @State private var userLevel: String?
+    @State private var userRating: String?
     
     var body: some View {
         NavigationView {
@@ -50,18 +34,29 @@ struct MainView: View {
                     NavigationLink(destination: PlayerDataView()) {
                         VStack {
                             HStack {
-                                Text(userGeneralData == nil ? (userData == nil ? "" : "未设置队伍名") : userGeneralData!.value) // Team
+                                Text(userTeamName ?? (isUserDataFetched ? "未设置队伍名" : "")) // Team
                                 Spacer()
-                                Text(userData == nil ? "" : "Lv." + userData!.level) // Lv
+                                Text(userLevel == nil ? "" : "Lv." + userLevel!) // Lv
                             }
                             HStack {
-                                Text(userData == nil ? "加载中..." : userData!.userName) // Name
-                                    .font(.title)
-                                    .fontWeight(.bold)
+                                if !isCardIDNotSet {
+                                    Text(userName ?? "加载中...") // Name
+                                        .font(.title)
+                                        .fontWeight(.bold)
+                                        .onAppear(perform: {
+                                            getUserData()
+                                            getGeneralData()
+                                        })
+                                } else {
+                                    Text("未设置卡号")
+                                        .font(.title)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.red)
+                                }
                                 Spacer()
-                                if let userData = userData {
-                                    let rating = String(format: "%.2f", convertRating(userData.playerRating))
-                                    let rawRating = Int(userData.playerRating)!
+                                if let userRating = userRating {
+                                    let rating = String(format: "%.2f", convertRating(userRating))
+                                    let rawRating = Int(userRating)!
                                     if rawRating >= 1500 {
                                         Text(rating)
                                             .font(.title)
@@ -123,70 +118,168 @@ struct MainView: View {
                     }
                 }
                 Section(footer: Text("请在曲目详细信息显示异常的情况下使用此功能")) {
-                    Button(action: {}) {
+                    Button(action: {getSongList()}) {
                         Text("刷新曲目数据库")
                     }
                 }
             }
-            .navigationTitle("ChuniQuery")
-            .onAppear(perform: {
-                getUserData(cardID: "012E4CD68ECD855E")
-                getGeneralData(cardID: "012E4CD68ECD855E")
-            })
-        }
-    }
-    
-    func getUserData(cardID: String) {
-        let provider = MoyaProvider<MinimeSupportAPI>()
-        provider.request(.getUserData(cardID: cardID)) { result in
-            switch result {
-            case .success(let resp):
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                DispatchQueue.main.async {
-                    do {
-                        userData = try decoder.decode(UserDataModel.self, from: resp.data)[0]
-                    } catch {
-                        userData = nil
-                    }
-                }
-            case .failure(_):
-                userData = nil
-            }
-        }
-    }
-    
-    func getGeneralData(cardID: String) {
-        let provider = MoyaProvider<MinimeSupportAPI>()
-        provider.request(.getGeneralData(cardID: cardID)) { result in
-            switch result {
-            case .success(let resp):
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                DispatchQueue.main.async {
-                    do {
-                        let decodedData = try decoder.decode(UserGeneralDataModel.self, from: resp.data)
-                        for item in decodedData {
-                            if item.key == "user_team_name" {
-                                userGeneralData = item
-                                return
-                            }
+            .sheet(isPresented: $isCardIDNotSet) {
+                NavigationView {
+                    ChangeCardIDView()
+                        .onDisappear {
+                            isCardIDNotSet = !(settings[0].card! == "" ? false : true)
                         }
-                        userGeneralData = nil
-                    } catch {
-                        userGeneralData = nil
-                    }
                 }
-            case .failure(_):
-                userGeneralData = nil
+            }
+            .navigationTitle("ChuniQuery")
+            .onAppear {
+                if settings.count == 0 {
+                    let newSetting = Settings(context: viewContext)
+                    newSetting.url = "http://123.57.246.220:3000" // Defaults to BBS
+                    newSetting.card = ""
+                    newSetting.songList = nil
+                    persistenceController.save()
+                }
+                
+                if settings[0].songList == nil {
+                    getSongList()
+                }
+                
+                isCardIDNotSet = !(settings[0].card! == "" ? false : true)
             }
         }
     }
     
-    func convertRating(_ rawRT: String) -> Double {
+    private func getUserData() {
+        provider.request(MultiTarget(MinimeSupportAPI.getUserData(baseURL: self.settings[0].url!, cardID: self.settings[0].card!))) { result in
+            switch result {
+            case .success(let resp):
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let userData: UserDataElements
+                do {
+                    userData = try decoder.decode(UserDataModel.self, from: resp.data)[0]
+                } catch {
+                    return
+                }
+                DispatchQueue.main.async {
+                    userName = userData.userName
+                    userLevel = userData.level
+                    userRating = userData.playerRating
+                }
+            case .failure(_):
+                return
+            }
+        }
+    }
+    
+    private func getGeneralData() {
+        provider.request(MultiTarget(MinimeSupportAPI.getGeneralData(baseURL: self.settings[0].url!, cardID: self.settings[0].card!))) { result in
+            switch result {
+            case .success(let resp):
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                var decodedData: UserGeneralDataModel
+                do {
+                    decodedData = try decoder.decode(UserGeneralDataModel.self, from: resp.data)
+                } catch {
+                    return
+                }
+                for item in decodedData {
+                    if item.key == "user_team_name" {
+                        DispatchQueue.main.async {
+                            userTeamName = item.value
+                        }
+                        return
+                    }
+                }
+            case .failure(_):
+                return
+            }
+        }
+    }
+    
+    private func getSongList() {
+        provider.request(MultiTarget(RediveEstertionAPI.getAllSongData)) { result in
+            switch result {
+            case let .success(resp):
+                guard var temp = String(data: resp.data, encoding: .utf8) else { return }
+                let jsonStart = temp.index(temp.startIndex, offsetBy: 16)
+                temp = String(temp[jsonStart...])
+                let decoder = JSONDecoder()
+                var rawJson: SongInfoModelRaw
+                do {
+                    rawJson = try decoder.decode(SongInfoModelRaw.self, from: temp.data(using: .utf8)!)
+                } catch {
+                    return
+                }
+                var middleWare = [String : [String : Any]]()
+                for item in rawJson {
+                    let key = item.key
+                    var songName, artist: String
+                    var constant: [Int]
+                    switch item.value[0] {
+                    case let .string(str):
+                        songName = str
+                    case .integerArray(_):
+                        continue
+                    }
+                    switch item.value[1] {
+                    case let .string(str):
+                        artist = str
+                    case .integerArray(_):
+                        continue
+                    }
+                    switch item.value[2] {
+                    case let .integerArray(arr):
+                        constant = arr
+                    case .string(_):
+                        continue
+                    }
+                    middleWare.updateValue([
+                        "songName": songName,
+                        "artist": artist,
+                        "constant": constant
+                    ], forKey: key)
+                }
+                let serialized = try! JSONSerialization.data(withJSONObject: middleWare)
+                DispatchQueue.main.async {
+                    settings[0].songList = serialized
+                    persistenceController.save()
+                }
+            case .failure(_):
+                return
+            }
+        }
+    }
+    
+    private func convertRating(_ rawRT: String) -> Double {
         //Rating should be XXXX in String, convert it to XX.XX in float
         let rating = Double(rawRT)!
         return rating / 100
+    }
+    
+    private func getColorByRating(_ rating: Int) -> Color {
+        switch rating {
+        case 0..<400: // GREEN
+            return .green
+        case 400..<700: // ORANGE
+            return .orange
+        case 700..<1000: // RED
+            return .red
+        case 1000..<1200: // PURPLE
+            return .purple
+        case 1200..<1300: // COPPER
+            return .brown
+        case 1300..<1400: // SILVER
+            return .teal
+        case 1400..<1450: // GOLD
+            return .orange
+        case 1450..<1500: // PLATINUM
+            return .yellow
+        default:
+            return .black
+        }
     }
 }
 

@@ -80,6 +80,7 @@
 		7F8DF0142737086500C14208 /* ChangeTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamView.swift; sourceTree = "<group>"; };
 		7F8DF0162737098200C14208 /* ChangeCardIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCardIDView.swift; sourceTree = "<group>"; };
 		7F8DF01827370C6900C14208 /* SongCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCard.swift; sourceTree = "<group>"; };
+		7F9DA677273CE27B00601AF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7FB4DD512738D01F003843B3 /* JSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONModel.swift; sourceTree = "<group>"; };
 		7FC798EF273A5DEB00B6939E /* ChuniQuery.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChuniQuery.xcdatamodel; sourceTree = "<group>"; };
 		800D547CB826F24D0ABD839F /* Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig"; path = "Target Support Files/Pods-ChuniQuery-ChuniQueryUITests/Pods-ChuniQuery-ChuniQueryUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 		7F315CC027368EF900508ABB /* ChuniQuery */ = {
 			isa = PBXGroup;
 			children = (
+				7F9DA677273CE27B00601AF0 /* Info.plist */,
 				7FC798EA273A31B000B6939E /* DataModel */,
 				7F70FF092737DA3C00B416BF /* Support */,
 				7F8DF0032736BC7F00C14208 /* UI */,
@@ -685,6 +687,7 @@
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers\"",
 				);
+				INFOPLIST_FILE = ChuniQuery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -723,6 +726,7 @@
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers\"",
 				);
+				INFOPLIST_FILE = ChuniQuery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
