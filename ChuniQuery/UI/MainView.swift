@@ -51,7 +51,7 @@ struct MainView: View {
                         playCount: $playCount,
                         firstPlayTime: $firstPlayTime,
                         lastPlayTime: $lastPlayTime,
-                        cardID: settings[0].card!
+                        cardID: settings.count == 0 ? "" : settings[0].card!
                     )) {
                         VStack {
                             HStack {
