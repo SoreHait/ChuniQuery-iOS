@@ -9,15 +9,15 @@ import SwiftUI
 
 fileprivate struct InputHint: View {
     @Binding var cardID: String
-    @Binding var lengthIndicatorColor: Color
-    @Binding var charIndicatorColor: Color
+    @Binding var isLengthMeet: Bool
+    @Binding var isCharMeet: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("\(cardID.count)/16")
-                .foregroundColor(lengthIndicatorColor)
+                .foregroundColor(isLengthMeet ? .gray : .red)
             Text("十六进制（只含有[0123456789ABCDEF]）")
-                .foregroundColor(charIndicatorColor)
+                .foregroundColor(isCharMeet ? .gray : .red)
         }
     }
 }
@@ -31,8 +31,6 @@ struct ChangeCardIDView: View {
     ) private var settings: FetchedResults<Settings>
     
     @State private var cardID: String = ""
-    @State private var lengthIndicatorColor: Color = .gray
-    @State private var charIndicatorColor: Color = .gray
     @State private var isLengthMeet: Bool = true
     @State private var isCharMeet: Bool = true
     
@@ -41,7 +39,7 @@ struct ChangeCardIDView: View {
     
     var body: some View {
         Form {
-            Section(footer: InputHint(cardID: $cardID, lengthIndicatorColor: $lengthIndicatorColor, charIndicatorColor: $charIndicatorColor)) {
+            Section(footer: InputHint(cardID: $cardID, isLengthMeet: $isLengthMeet, isCharMeet: $isCharMeet)) {
                 TextField("卡号", text: $cardID)
                     .onChange(of: cardID) { _ in
                         checkCardID()
@@ -51,7 +49,10 @@ struct ChangeCardIDView: View {
             }
             .onAppear {
                 cardID = settings[0].card!
-                checkCardID()
+                if cardID == "" {
+                    isCharMeet = false
+                    isLengthMeet = false
+                }
             }
         }
         .navigationBarTitle("修改卡号", displayMode: .inline)
@@ -72,24 +73,11 @@ struct ChangeCardIDView: View {
     
     private func checkCardID() {
         cardID = cardID.uppercased()
-        if cardID.count == 16 {
-            lengthIndicatorColor = .gray
-            isLengthMeet = true
-        } else {
-            lengthIndicatorColor = .red
-            isLengthMeet = false
-        }
+        isLengthMeet = cardID.count == 16
         if cardID.count > 16 {
             cardID = String(cardID.prefix(16))
         }
-        
-        if hexPattern.firstMatch(in: cardID, options: [], range: NSRange(location: 0, length: cardID.count)) == nil {
-            isCharMeet = true
-            charIndicatorColor = .gray
-        } else {
-            isCharMeet = false
-            charIndicatorColor = .red
-        }
+        isCharMeet = hexPattern.firstMatch(in: cardID, options: [], range: NSRange(location: 0, length: cardID.count)) == nil
     }
 }
 

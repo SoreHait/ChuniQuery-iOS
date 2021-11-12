@@ -22,6 +22,7 @@ struct MainView: View {
     @State private var isCardIDNotSet: Bool = true
     @State private var isUserDataFetched: Bool = false
     @State private var isWrongCard: Bool = false
+    @State private var unableToFetch: Bool = false
     @State private var userName: String?
     @State private var userTeamName: String?
     @State private var userLevel: String?
@@ -40,7 +41,7 @@ struct MainView: View {
                             }
                             HStack {
                                 if !isCardIDNotSet {
-                                    Text(userName ?? (isWrongCard ? "卡号错误/没有数据" : "加载中...")) // Name
+                                    Text(unableToFetch ? "数据获取失败" : (userName ?? (isWrongCard ? "卡号错误/没有数据" : "加载中..."))) // Name
                                         .font(.title)
                                         .fontWeight(.bold)
                                         .onAppear(perform: {
@@ -108,7 +109,8 @@ struct MainView: View {
                         Text("修改卡号")
                         Spacer()
                     }
-                    NavigationLink(destination: ChangeServerView()) {
+                    NavigationLink(destination: ChangeServerView()
+                                    .onAppear(perform: { reinit() })) {
                         Text("修改服务器")
                         Spacer()
                     }
@@ -148,14 +150,13 @@ struct MainView: View {
     }
     
     private func reinit() {
-        DispatchQueue.main.async {
-            userName = nil
-            userTeamName = nil
-            userLevel = nil
-            userRating = nil
-            isUserDataFetched = false
-            isWrongCard = false
-        }
+        userName = nil
+        userTeamName = nil
+        userLevel = nil
+        userRating = nil
+        isUserDataFetched = false
+        isWrongCard = false
+        unableToFetch = false
     }
     
     private func getUserData() {
@@ -170,6 +171,7 @@ struct MainView: View {
                 } catch {
                     DispatchQueue.main.async {
                         isWrongCard = true
+                        unableToFetch = false
                     }
                     return
                 }
@@ -179,9 +181,12 @@ struct MainView: View {
                     userRating = userData.playerRating
                     isUserDataFetched = true
                     isWrongCard = false
+                    unableToFetch = false
                 }
             case .failure(_):
-                return
+                DispatchQueue.main.async {
+                    unableToFetch = true
+                }
             }
         }
     }
