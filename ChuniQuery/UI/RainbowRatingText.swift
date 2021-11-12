@@ -12,13 +12,23 @@ struct RainbowRatingText: ViewModifier {
         content.overlay(GeometryReader { (proxy: GeometryProxy) in
             ZStack {
                 LinearGradient(
-                    gradient: Gradient(colors: stride(from: 0, to: 1, by: 0.1).map { hue in
-                        Color(hue: hue, saturation: 1, brightness: 1)
+                    gradient: Gradient(colors: [
+                        [255, 0, 0],
+                        [250, 144, 126],
+                        [249, 249, 72],
+                        [132, 252, 74],
+                        [92, 250, 255],
+                        [0, 0, 255]
+                    ].map {
+                        Color(red: $0[0]/255, green: $0[1]/255, blue: $0[2]/255)
                     }),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
+                    startPoint: .top,
+                    endPoint: .bottom
                 )
-                    .frame(width: proxy.size.width, height: proxy.size.height)
+                    .frame(
+                        width: proxy.size.width,
+                        height: proxy.size.height
+                    )
             }
         })
             .mask(content)
@@ -27,7 +37,11 @@ struct RainbowRatingText: ViewModifier {
 
 struct RainbowRatingText_Previews: PreviewProvider {
     static var previews: some View {
-        Text("15.99")
+        Text("16.00")
+            .font(.title)
+            .fontWeight(.bold)
+            .modifier(RainbowRatingText())
+        Rectangle()
             .modifier(RainbowRatingText())
     }
 }

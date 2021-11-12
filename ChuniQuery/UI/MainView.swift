@@ -18,26 +18,46 @@ struct MainView: View {
     
     private let provider = MoyaProvider<MultiTarget>()
     private let persistenceController = PersistenceController.shared
+    private var dateFormatter: DateFormatter {
+        let tmp = DateFormatter()
+        tmp.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        return tmp
+    }
     
     @State private var isCardIDNotSet: Bool = true
     @State private var isUserDataFetched: Bool = false
     @State private var isWrongCard: Bool = false
     @State private var unableToFetch: Bool = false
+    
     @State private var userName: String?
     @State private var userTeamName: String?
     @State private var userLevel: String?
-    @State private var userRating: String?
+    @State private var userCurrentRating: String?
+    @State private var userHiRating: String?
+    @State private var playCount: String?
+    @State private var firstPlayTime: Date?
+    @State private var lastPlayTime: Date?
     
     var body: some View {
         NavigationView {
             List {
                 Section {
-                    NavigationLink(destination: PlayerDataView()) {
+                    NavigationLink(destination: PlayerDataView(
+                        userName: $userName,
+                        userTeamName: $userTeamName,
+                        userCurrentRating: $userCurrentRating,
+                        userHiRating: $userHiRating,
+                        userLevel: $userLevel,
+                        playCount: $playCount,
+                        firstPlayTime: $firstPlayTime,
+                        lastPlayTime: $lastPlayTime,
+                        cardID: settings[0].card!
+                    )) {
                         VStack {
                             HStack {
                                 Text(userTeamName ?? (isUserDataFetched ? "未设置队伍名" : "")) // Team
                                 Spacer()
-                                Text(userLevel == nil ? "" : "Lv." + userLevel!) // Lv
+                                Text(userLevel == nil ? "" : "Lv.\(userLevel!)") // Lv
                             }
                             HStack {
                                 if !isCardIDNotSet {
@@ -54,7 +74,7 @@ struct MainView: View {
                                         .fontWeight(.bold)
                                 }
                                 Spacer()
-                                if let userRating = userRating {
+                                if let userRating = userCurrentRating {
                                     let rating = String(format: "%.2f", convertRating(userRating))
                                     let rawRating = Int(userRating)!
                                     if rawRating >= 1500 {
@@ -153,7 +173,8 @@ struct MainView: View {
         userName = nil
         userTeamName = nil
         userLevel = nil
-        userRating = nil
+        userCurrentRating = nil
+        userHiRating = nil
         isUserDataFetched = false
         isWrongCard = false
         unableToFetch = false
@@ -178,7 +199,11 @@ struct MainView: View {
                 DispatchQueue.main.async {
                     userName = userData.userName
                     userLevel = userData.level
-                    userRating = userData.playerRating
+                    userCurrentRating = userData.playerRating
+                    userHiRating = userData.highestRating
+                    playCount = userData.playCount
+                    firstPlayTime = dateFormatter.date(from: userData.firstPlayDate)
+                    lastPlayTime = dateFormatter.date(from: userData.lastPlayDate)
                     isUserDataFetched = true
                     isWrongCard = false
                     unableToFetch = false
@@ -269,12 +294,6 @@ struct MainView: View {
                 return
             }
         }
-    }
-    
-    private func convertRating(_ rawRT: String) -> Double {
-        //Rating should be XXXX in String, convert it to XX.XX in float
-        let rating = Double(rawRT)!
-        return rating / 100
     }
     
     private func getColorByRating(_ rating: Int) -> Color {

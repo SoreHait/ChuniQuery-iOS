@@ -8,6 +8,23 @@
 import SwiftUI
 
 struct PlayerDataView: View {
+    @Binding var userName: String?
+    @Binding var userTeamName: String?
+    @Binding var userCurrentRating: String?
+    @Binding var userHiRating: String?
+    @Binding var userLevel: String?
+    @Binding var playCount: String?
+    @Binding var firstPlayTime: Date?
+    @Binding var lastPlayTime: Date?
+    
+    var cardID: String
+    
+    private var dateFormatter: DateFormatter {
+        let tmp = DateFormatter()
+        tmp.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        return tmp
+    }
+    
     var body: some View {
         List {
             Section(header: Text("修改资料")) {
@@ -15,7 +32,7 @@ struct PlayerDataView: View {
                     HStack {
                         Text("用户名")
                         Spacer()
-                        Text("当前用户名")
+                        Text(userName ?? "")
                             .foregroundColor(Color.gray)
                     }
                 }
@@ -23,7 +40,7 @@ struct PlayerDataView: View {
                     HStack {
                         Text("队伍名")
                         Spacer()
-                        Text("当前队伍名")
+                        Text(userTeamName ?? "")
                             .foregroundColor(Color.gray)
                     }
                 }
@@ -33,53 +50,47 @@ struct PlayerDataView: View {
                 HStack {
                     Text("当前Rating")
                     Spacer()
-                    Text("Current RT")
+                    Text(userCurrentRating == nil ? "" : String(format: "%.2f", convertRating(userCurrentRating!)))
                         .foregroundColor(Color.gray)
                 }
                 HStack {
                     Text("最高Rating")
                     Spacer()
-                    Text("Best RT")
+                    Text(userHiRating == nil ? "" : String(format: "%.2f", convertRating(userHiRating!)))
                         .foregroundColor(Color.gray)
                 }
                 HStack {
                     Text("等级")
                     Spacer()
-                    Text("Current LVL")
+                    Text(userLevel == nil ? "" : "Lv.\(userLevel!)")
                         .foregroundColor(Color.gray)
                 }
                 HStack {
                     Text("总游玩次数")
                     Spacer()
-                    Text("Total PC")
+                    Text(playCount ?? "")
                         .foregroundColor(Color.gray)
                 }
                 HStack {
                     Text("首次游玩时间")
                     Spacer()
-                    Text("1975-01-01 00:00:00")
+                    Text(firstPlayTime == nil ? "" : dateFormatter.string(from: firstPlayTime!))
                         .foregroundColor(Color.gray)
                 }
                 HStack {
                     Text("最近游玩时间")
                     Spacer()
-                    Text("2077-12-31 23:59:59")
+                    Text(lastPlayTime == nil ? "" : dateFormatter.string(from: lastPlayTime!))
                         .foregroundColor(Color.gray)
                 }
                 HStack {
                     Text("卡号")
                     Spacer()
-                    Text("Using Card ID")
+                    Text(cardID)
                         .foregroundColor(Color.gray)
                 }
             }
         }
         .navigationTitle("个人资料")
-    }
-}
-
-struct PlayerDataView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlayerDataView()
     }
 }
