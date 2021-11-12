@@ -49,9 +49,9 @@ private func getColorByScore(_ score: Int) -> Color {
     case 900000..<975000:
         return .orange
     case 600000..<900000:
-        return .teal
+        return Color(red: 92/255, green: 198/255, blue: 255/255)
     case 500000..<600000:
-        return .brown
+        return Color(red: 217/255, green: 111/255, blue: 46/255)
     case 0..<500000:
         return .gray
     default:

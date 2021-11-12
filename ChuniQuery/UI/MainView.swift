@@ -21,7 +21,7 @@ struct MainView: View {
     
     @State private var isCardIDNotSet: Bool = true
     @State private var isUserDataFetched: Bool = false
-    @State private var isUserGeneralDataFetched: Bool = false
+    @State private var isWrongCard: Bool = false
     @State private var userName: String?
     @State private var userTeamName: String?
     @State private var userLevel: String?
@@ -40,7 +40,7 @@ struct MainView: View {
                             }
                             HStack {
                                 if !isCardIDNotSet {
-                                    Text(userName ?? "加载中...") // Name
+                                    Text(userName ?? (isWrongCard ? "卡号错误/没有数据" : "加载中...")) // Name
                                         .font(.title)
                                         .fontWeight(.bold)
                                         .onAppear(perform: {
@@ -51,7 +51,6 @@ struct MainView: View {
                                     Text("未设置卡号")
                                         .font(.title)
                                         .fontWeight(.bold)
-                                        .foregroundColor(.red)
                                 }
                                 Spacer()
                                 if let userRating = userRating {
@@ -104,21 +103,19 @@ struct MainView: View {
                 }
                 
                 Section(header: Text("设定")) {
-                    NavigationLink(destination: ChangeCardIDView()) {
+                    NavigationLink(destination: ChangeCardIDView()
+                                    .onAppear(perform: { reinit() })) {
                         Text("修改卡号")
                         Spacer()
-                        Text("Current ID") // Set CardID
-                            .foregroundColor(Color.gray)
                     }
                     NavigationLink(destination: ChangeServerView()) {
                         Text("修改服务器")
                         Spacer()
-                        Text("Current Svr") // Set Server Addr
-                            .foregroundColor(Color.gray)
                     }
                 }
+                
                 Section(footer: Text("请在曲目详细信息显示异常的情况下使用此功能")) {
-                    Button(action: {getSongList()}) {
+                    Button(action: { getSongList() }) {
                         Text("刷新曲目数据库")
                     }
                 }
@@ -150,6 +147,17 @@ struct MainView: View {
         }
     }
     
+    private func reinit() {
+        DispatchQueue.main.async {
+            userName = nil
+            userTeamName = nil
+            userLevel = nil
+            userRating = nil
+            isUserDataFetched = false
+            isWrongCard = false
+        }
+    }
+    
     private func getUserData() {
         provider.request(MultiTarget(MinimeSupportAPI.getUserData(baseURL: self.settings[0].url!, cardID: self.settings[0].card!))) { result in
             switch result {
@@ -160,12 +168,17 @@ struct MainView: View {
                 do {
                     userData = try decoder.decode(UserDataModel.self, from: resp.data)[0]
                 } catch {
+                    DispatchQueue.main.async {
+                        isWrongCard = true
+                    }
                     return
                 }
                 DispatchQueue.main.async {
                     userName = userData.userName
                     userLevel = userData.level
                     userRating = userData.playerRating
+                    isUserDataFetched = true
+                    isWrongCard = false
                 }
             case .failure(_):
                 return
@@ -270,9 +283,9 @@ struct MainView: View {
         case 1000..<1200: // PURPLE
             return .purple
         case 1200..<1300: // COPPER
-            return .brown
+            return Color(red: 217/255, green: 111/255, blue: 46/255)
         case 1300..<1400: // SILVER
-            return .teal
+            return Color(red: 92/255, green: 198/255, blue: 255/255)
         case 1400..<1450: // GOLD
             return .orange
         case 1450..<1500: // PLATINUM
