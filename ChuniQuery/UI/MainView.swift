@@ -20,7 +20,7 @@ struct MainView: View {
     private let persistenceController = PersistenceController.shared
     private var dateFormatter: DateFormatter {
         let tmp = DateFormatter()
-        tmp.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        tmp.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         return tmp
     }
     
