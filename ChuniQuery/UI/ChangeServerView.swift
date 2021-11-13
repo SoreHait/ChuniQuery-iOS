@@ -42,7 +42,8 @@ struct ChangeServerView: View {
                 }
             }
         }
-        .navigationBarTitle("修改服务器", displayMode: .inline)
+        .navigationTitle("修改服务器")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {

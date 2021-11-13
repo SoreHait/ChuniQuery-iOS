@@ -28,7 +28,8 @@ fileprivate struct ModifySheet: View {
                     .disabled(false)
                 }
             }
-            .navigationBarTitle("修改数量", displayMode: .inline)
+            .navigationTitle("修改数量")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
@@ -68,7 +69,8 @@ struct ModTicketCountView: View {
             TicketItem(imageItem: "4x_map")
             TicketItem(imageItem: "gold_penguin")
         }
-        .navigationBarTitle("修改道具数量", displayMode: .inline)
+        .navigationTitle("修改道具数量")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

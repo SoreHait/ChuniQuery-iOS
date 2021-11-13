@@ -57,7 +57,6 @@ struct MainView: View {
                             HStack {
                                 Text(unableToFetch || isWrongCard ? "" : (userTeamName ?? (isUserDataFetched ? "未设置队伍名" : ""))) // Team
                                 Spacer()
-                                Text(unableToFetch || isWrongCard ? "" : (userLevel == nil ? "" : "Lv.\(userLevel!)")) // Lv
                             }
                             HStack {
                                 if !isCardIDNotSet {
@@ -70,6 +69,11 @@ struct MainView: View {
                                         .fontWeight(.bold)
                                 }
                                 Spacer()
+                            }
+                            HStack {
+                                Text(unableToFetch || isWrongCard ? "" : (userLevel == nil ? "" : "Lv.\(userLevel!)")) // Lv
+                                Spacer()
+                                Text(unableToFetch || isWrongCard ? "" : "Rating")
                                 if let userRating = userCurrentRating {
                                     let rating = String(format: "%.2f", convertRating(userRating))
                                     let rawRating = Int(userRating)!
@@ -205,7 +209,6 @@ struct MainView: View {
     }
     
     private func fetchData() {
-        print("Fetching Data")
         getUserData()
         getGeneralData()
     }

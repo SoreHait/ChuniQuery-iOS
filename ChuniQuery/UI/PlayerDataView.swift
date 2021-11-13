@@ -92,6 +92,7 @@ struct PlayerDataView: View {
                 }
             }
         }
-        .navigationBarTitle("个人资料", displayMode: .inline)
+        .navigationTitle("个人资料")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

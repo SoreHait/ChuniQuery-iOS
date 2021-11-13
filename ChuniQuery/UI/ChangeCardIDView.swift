@@ -55,7 +55,8 @@ struct ChangeCardIDView: View {
                 }
             }
         }
-        .navigationBarTitle("修改卡号", displayMode: .inline)
+        .navigationTitle("修改卡号")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
