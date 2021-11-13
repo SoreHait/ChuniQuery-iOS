@@ -55,19 +55,15 @@ struct MainView: View {
                     )) {
                         VStack {
                             HStack {
-                                Text(userTeamName ?? (isUserDataFetched ? "未设置队伍名" : "")) // Team
+                                Text(unableToFetch || isWrongCard ? "" : (userTeamName ?? (isUserDataFetched ? "未设置队伍名" : ""))) // Team
                                 Spacer()
-                                Text(userLevel == nil ? "" : "Lv.\(userLevel!)") // Lv
+                                Text(unableToFetch || isWrongCard ? "" : (userLevel == nil ? "" : "Lv.\(userLevel!)")) // Lv
                             }
                             HStack {
                                 if !isCardIDNotSet {
-                                    Text(unableToFetch ? "数据获取失败" : (userName ?? (isWrongCard ? "卡号错误/没有数据" : "加载中..."))) // Name
+                                    Text(unableToFetch ? "数据获取失败" : (isWrongCard ? "卡号错误/没有数据" : (userName ?? "加载中..."))) // Name
                                         .font(.title)
                                         .fontWeight(.bold)
-                                        .onAppear(perform: {
-                                            getUserData()
-                                            getGeneralData()
-                                        })
                                 } else {
                                     Text("未设置卡号")
                                         .font(.title)
@@ -78,12 +74,12 @@ struct MainView: View {
                                     let rating = String(format: "%.2f", convertRating(userRating))
                                     let rawRating = Int(userRating)!
                                     if rawRating >= 1500 {
-                                        Text(rating)
+                                        Text(unableToFetch || isWrongCard ? "" : rating)
                                             .font(.title)
                                             .fontWeight(.bold)
                                             .modifier(RainbowRatingText())
                                     } else {
-                                        Text(rating)
+                                        Text(unableToFetch || isWrongCard ? "" : rating)
                                             .font(.title)
                                             .fontWeight(.bold)
                                             .foregroundColor(getColorByRating(rawRating))
@@ -92,6 +88,18 @@ struct MainView: View {
                             }
                         }
                         .padding([.top, .leading, .bottom])
+                    }
+                    .disabled(!isUserDataFetched || isWrongCard || unableToFetch || isCardIDNotSet)
+                }
+                
+                Section {
+                    Button(action: {
+                        if unableToFetch {
+                            unableToFetch = false
+                        }
+                        fetchData()
+                    }) {
+                        Text("刷新数据")
                     }
                 }
                 
@@ -104,6 +112,7 @@ struct MainView: View {
                                 .foregroundColor(Color.gray)
                         }
                     }
+                    .disabled(!isUserDataFetched || isWrongCard || unableToFetch || isCardIDNotSet)
                     NavigationLink(destination: R10View()) {
                         HStack {
                             Text("Recent 10")
@@ -112,25 +121,34 @@ struct MainView: View {
                                 .foregroundColor(Color.gray)
                         }
                     }
+                    .disabled(!isUserDataFetched || isWrongCard || unableToFetch || isCardIDNotSet)
                 }
                 
                 Section {
                     NavigationLink(destination: RecentPlayView()) {
                         Text("最近游玩记录")
                     }
+                    .disabled(!isUserDataFetched || isWrongCard || unableToFetch || isCardIDNotSet)
                     NavigationLink(destination: ModTicketCountView()) {
-                        Text("道具数量修改")
+                        Text("修改道具数量")
                     }
+                    .disabled(!isUserDataFetched || isWrongCard || unableToFetch || isCardIDNotSet)
                 }
                 
                 Section(header: Text("设定")) {
                     NavigationLink(destination: ChangeCardIDView()
-                                    .onAppear(perform: { reinit() })) {
+                                    .onDisappear(perform: {
+                        reinit()
+                        fetchData()
+                    })) {
                         Text("修改卡号")
                         Spacer()
                     }
                     NavigationLink(destination: ChangeServerView()
-                                    .onAppear(perform: { reinit() })) {
+                                    .onDisappear(perform: {
+                        reinit()
+                        fetchData()
+                    })) {
                         Text("修改服务器")
                         Spacer()
                     }
@@ -142,29 +160,35 @@ struct MainView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isCardIDNotSet) {
+            .sheet(isPresented: $isCardIDNotSet, onDismiss: {
+                isCardIDNotSet = !(settings[0].card! == "" ? false : true)
+                if !isCardIDNotSet {
+                    fetchData()
+                }
+            }) {
                 NavigationView {
                     ChangeCardIDView()
-                        .onDisappear {
-                            isCardIDNotSet = !(settings[0].card! == "" ? false : true)
-                        }
                 }
             }
             .navigationTitle("ChuniQuery")
-            .onAppear {
-                if settings.count == 0 {
-                    let newSetting = Settings(context: viewContext)
-                    newSetting.url = "http://123.57.246.220:3000" // Defaults to BBS
-                    newSetting.card = ""
-                    newSetting.songList = nil
-                    persistenceController.save()
-                }
-                
-                if settings[0].songList == nil {
-                    getSongList()
-                }
-                
-                isCardIDNotSet = !(settings[0].card! == "" ? false : true)
+        }
+        .onAppear {
+            if settings.count == 0 {
+                let newSetting = Settings(context: viewContext)
+                newSetting.url = "http://123.57.246.220:3000" // Defaults to BBS
+                newSetting.card = ""
+                newSetting.songList = nil
+                persistenceController.save()
+            }
+            
+            if settings[0].songList == nil {
+                getSongList()
+            }
+            
+            isCardIDNotSet = !(settings[0].card! == "" ? false : true)
+            
+            if !isCardIDNotSet {
+                fetchData()
             }
         }
     }
@@ -178,6 +202,12 @@ struct MainView: View {
         isUserDataFetched = false
         isWrongCard = false
         unableToFetch = false
+    }
+    
+    private func fetchData() {
+        print("Fetching Data")
+        getUserData()
+        getGeneralData()
     }
     
     private func getUserData() {

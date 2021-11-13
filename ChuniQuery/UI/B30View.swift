@@ -22,7 +22,7 @@ struct B30View: View {
                 SongCardNoJudge(songName: "World Vanquisher", number: num, diffID: String(num % 4), score: 1010000, constant: 14.90, rating: 17.90)
             }
         }
-        .navigationTitle("Best 30")
+        .navigationBarTitle("Best 30", displayMode: .inline)
     }
 }
 

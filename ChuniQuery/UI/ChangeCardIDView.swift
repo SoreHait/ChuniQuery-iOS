@@ -45,7 +45,7 @@ struct ChangeCardIDView: View {
                         checkCardID()
                     }
                     .disableAutocorrection(true)
-                    .font(.custom("Menlo", size: 18))
+                    .font(.custom("Menlo", size: 16))
             }
             .onAppear {
                 cardID = settings[0].card!

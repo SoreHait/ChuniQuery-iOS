@@ -88,9 +88,10 @@ struct PlayerDataView: View {
                     Spacer()
                     Text(cardID)
                         .foregroundColor(Color.gray)
+                        .font(.custom("Menlo", size: 16))
                 }
             }
         }
-        .navigationTitle("个人资料")
+        .navigationBarTitle("个人资料", displayMode: .inline)
     }
 }
