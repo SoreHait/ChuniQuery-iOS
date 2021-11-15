@@ -23,7 +23,7 @@ struct ChangeServerView: View {
     var body: some View {
         Form {
             Section(footer: Text("服务器应以\"http://\"开头").foregroundColor(isURLValidate ? .gray : .red)) {
-                TextField("", text: $serverURL)
+                TextField("服务器地址", text: $serverURL)
                     .onChange(of: serverURL) { _ in
                         checkURL()
                     }

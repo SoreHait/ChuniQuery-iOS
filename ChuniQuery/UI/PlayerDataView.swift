@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct PlayerDataView: View {
-    @Binding var userName: String?
-    @Binding var userTeamName: String?
+    @FetchRequest(
+        sortDescriptors: []
+    ) private var settings: FetchedResults<Settings>
+    
+    @State var userName: String
+    @State var userTeamName: String
+    
     @Binding var userCurrentRating: String?
     @Binding var userHiRating: String?
     @Binding var userLevel: String?
     @Binding var playCount: String?
     @Binding var firstPlayTime: Date?
     @Binding var lastPlayTime: Date?
-    
-    var cardID: String
     
     private var dateFormatter: DateFormatter {
         let tmp = DateFormatter()
@@ -28,19 +31,19 @@ struct PlayerDataView: View {
     var body: some View {
         List {
             Section(header: Text("修改资料")) {
-                NavigationLink(destination: ChangeNameView()) {
+                NavigationLink(destination: ChangeNameView(userName: $userName)) {
                     HStack {
                         Text("用户名")
                         Spacer()
-                        Text(userName ?? "")
+                        Text(userName)
                             .foregroundColor(Color.gray)
                     }
                 }
-                NavigationLink(destination: ChangeTeamView()) {
+                NavigationLink(destination: ChangeTeamView(teamName: $userTeamName)) {
                     HStack {
                         Text("队伍名")
                         Spacer()
-                        Text(userTeamName ?? "")
+                        Text(userTeamName)
                             .foregroundColor(Color.gray)
                     }
                 }
@@ -86,7 +89,7 @@ struct PlayerDataView: View {
                 HStack {
                     Text("卡号")
                     Spacer()
-                    Text(cardID)
+                    Text(settings[0].card!)
                         .foregroundColor(Color.gray)
                         .font(.custom("Menlo", size: 16))
                 }

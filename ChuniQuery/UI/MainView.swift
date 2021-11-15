@@ -43,15 +43,14 @@ struct MainView: View {
             List {
                 Section {
                     NavigationLink(destination: PlayerDataView(
-                        userName: $userName,
-                        userTeamName: $userTeamName,
+                        userName: userName ?? "",
+                        userTeamName: userTeamName ?? "",
                         userCurrentRating: $userCurrentRating,
                         userHiRating: $userHiRating,
                         userLevel: $userLevel,
                         playCount: $playCount,
                         firstPlayTime: $firstPlayTime,
-                        lastPlayTime: $lastPlayTime,
-                        cardID: settings.count == 0 ? "" : settings[0].card!
+                        lastPlayTime: $lastPlayTime
                     )) {
                         VStack {
                             HStack {
@@ -198,7 +197,7 @@ struct MainView: View {
     }
     
     private func reinit() {
-        userName = nil
+        userName = ""
         userTeamName = nil
         userLevel = nil
         userCurrentRating = nil

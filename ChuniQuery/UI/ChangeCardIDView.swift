@@ -81,11 +81,3 @@ struct ChangeCardIDView: View {
         isCharMeet = hexPattern.firstMatch(in: cardID, options: [], range: NSRange(location: 0, length: cardID.count)) == nil
     }
 }
-
-/*
-struct ChangeCardIDView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChangeCardIDView()
-    }
-}
- */
