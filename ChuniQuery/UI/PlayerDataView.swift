@@ -96,7 +96,9 @@ struct PlayerDataView: View {
                 HStack {
                     Text("Access Code")
                     Spacer()
-                    Text(String(Int(settings[0].card!, radix: 16)!))
+                    Text(String(format: "%020lld", Int(settings[0].card!, radix: 16)!))
+                        .foregroundColor(Color.gray)
+                        .font(.custom("Menlo", size: 16))
                 }
             }
         }

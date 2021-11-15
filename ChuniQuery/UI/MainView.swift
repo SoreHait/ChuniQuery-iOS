@@ -80,7 +80,7 @@ struct MainView: View {
                             HStack {
                                 Text(unableToFetch || isWrongCard ? "" : (userLevel == nil ? "" : "Lv.\(userLevel!)")) // Lv
                                 Spacer()
-                                Text(unableToFetch || isWrongCard ? "" : "Rating")
+                                Text(unableToFetch || isWrongCard || userCurrentRating == nil ? "" : "Rating")
                                 if let userRating = userCurrentRating {
                                     let rating = String(format: "%.2f", convertRating(userRating))
                                     let rawRating = Int(userRating)!
@@ -299,7 +299,11 @@ struct MainView: View {
             case let .success(resp):
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                musicRecord = try! decoder.decode(UserMusicModel.self, from: resp.data)
+                do {
+                    musicRecord = try decoder.decode(UserMusicModel.self, from: resp.data)
+                } catch {
+                    return
+                }
                 var musicLog = GameplayRecordModel()
                 for record in musicRecord! {
                     var songName: String
@@ -351,7 +355,11 @@ struct MainView: View {
             case let .success(resp):
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                historyRecord = try? decoder.decode(UserPlaylogModel.self, from: resp.data)
+                do {
+                    historyRecord = try decoder.decode(UserPlaylogModel.self, from: resp.data)
+                } catch {
+                    return
+                }
                 var playLogTmp = GameplayRecordModel()
                 for record in historyRecord! {
                     var songName: String
