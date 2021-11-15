@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct RecentPlayView: View {
+    
+    var playLog: GameplayRecordModel?
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct RecentPlayView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecentPlayView()
+        List {
+            ForEach(0..<playLog!.count) { num in
+                let song = playLog![num]
+                SongCardJudge(songName: song.songName, number: num + 1, diffID: song.level, score: song.score, constant: song.constant, rating: song.rating, playTime: song.playDate!, JCcount: song.judge![0], JCount: song.judge![1], ACount: song.judge![2], MCount: song.judge![3])
+            }
+        }
+        .navigationTitle("最近游玩记录")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

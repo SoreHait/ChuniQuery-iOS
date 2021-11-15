@@ -59,30 +59,32 @@ private func getColorByScore(_ score: Int) -> Color {
     }
 }
 
-private func getDiffByID(_ id: String) -> String {
+private func getDiffByID(_ id: Int) -> String {
     switch id {
-    case "0":
+    case 0:
         return "BASIC"
-    case "1":
+    case 1:
         return "ADVANCED"
-    case "2":
+    case 2:
         return "EXPERT"
-    case "3":
+    case 3:
         return "MASTER"
+    case 4:
+        return "WORLD'S END"
     default:
         return "???"
     }
 }
 
-private func getDiffColorByID(_ id: String) -> Color {
+private func getDiffColorByID(_ id: Int) -> Color {
     switch id {
-    case "0":
+    case 0:
         return .green
-    case "1":
+    case 1:
         return .yellow
-    case "2":
+    case 2:
         return .red
-    case "3":
+    case 3:
         return .purple
     default:
         return .black
@@ -93,11 +95,11 @@ private func getDiffColorByID(_ id: String) -> Color {
 struct SongCardJudge: View {
     var songName: String
     var number: Int
-    var diffID: String
+    var diffID: Int
     var score: Int
     var constant: Double
     var rating: Double
-    var playTime: String
+    var playTime: Date
     var JCcount: Int
     var JCount: Int
     var ACount: Int
@@ -119,6 +121,12 @@ struct SongCardJudge: View {
         getDiffColorByID(diffID)
     }
     
+    var dateFormatter: DateFormatter {
+        let tmp = DateFormatter()
+        tmp.dateFormat = "yyyy-MM-dd\nHH:mm:ss"
+        return tmp
+    }
+    
     var body: some View {
         Section {
             VStack {
@@ -126,11 +134,13 @@ struct SongCardJudge: View {
                     Text(songName)
                         .font(.title2)
                         .fontWeight(.bold)
+                        .fixedSize(horizontal: false, vertical: true)
                     Spacer()
                     Text("No.\(number)")
                         .font(.title2)
                         .fontWeight(.medium)
                 }
+                .padding(.bottom, 1.0)
                 HStack {
                     Text(diff)
                         .font(.subheadline)
@@ -197,8 +207,9 @@ struct SongCardJudge: View {
                             Text("游玩时间")
                                 .fontWeight(.medium)
                             Spacer()
-                            Text(playTime)
+                            Text(dateFormatter.string(from: playTime))
                                 .multilineTextAlignment(.trailing)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                     .frame(width: 180.0)
@@ -226,14 +237,14 @@ struct SongCardJudge: View {
                 .padding(.top, 1.0)
             }
         }
-        .frame(height: 180)
+        .padding(.vertical, 9.0)
     }
 }
 
 struct SongCardNoJudge: View {
     var songName: String
     var number: Int
-    var diffID: String
+    var diffID: Int
     var score: Int
     var constant: Double
     var rating: Double
@@ -261,11 +272,13 @@ struct SongCardNoJudge: View {
                     Text(songName)
                         .font(.title2)
                         .fontWeight(.bold)
+                        .fixedSize(horizontal: false, vertical: true)
                     Spacer()
                     Text("No.\(number)")
                         .font(.title2)
                         .fontWeight(.medium)
                 }
+                .padding(.bottom, 1.0)
                 HStack {
                     Text(diff)
                         .font(.subheadline)
@@ -315,15 +328,5 @@ struct SongCardNoJudge: View {
             }
         }
         .padding(.vertical, 9.0)
-    }
-}
-
-
-struct SongCard_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SongCardJudge(songName: "World Vanquisher", number: 1, diffID: "0", score: 1009750, constant: 14.90, rating: 17.90, playTime: "2077-11-11\n20:28:37", JCcount: 3499, JCount: 1, ACount: 0, MCount: 0)
-            SongCardNoJudge(songName: "World Vanquisher", number: 1, diffID: "2", score: 1009750, constant: 14.90, rating: 17.90)
-        }
     }
 }

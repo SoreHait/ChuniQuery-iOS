@@ -93,6 +93,11 @@ struct PlayerDataView: View {
                         .foregroundColor(Color.gray)
                         .font(.custom("Menlo", size: 16))
                 }
+                HStack {
+                    Text("Access Code")
+                    Spacer()
+                    Text(String(Int(settings[0].card!, radix: 16)!))
+                }
             }
         }
         .navigationTitle("个人资料")

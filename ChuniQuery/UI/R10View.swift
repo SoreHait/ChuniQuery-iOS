@@ -8,18 +8,23 @@
 import SwiftUI
 
 struct R10View: View {
+    
+    var r10Song: GameplayRecordModel?
+    var r10RT: Double?
+    
     var body: some View {
         List {
             Section {
                 HStack {
                     Text("Rating")
                     Spacer()
-                    Text("R10 Rating")
+                    Text(r10RT == nil ? "" : String(format: "%.2f", r10RT!))
                         .foregroundColor(.gray)
                 }
             }
             ForEach(1..<11) { num in
-                SongCardJudge(songName: "World Vanquisher", number: num, diffID: String(num % 4), score: num == 1 ? 1010000 : (12 - num) * 100000 , constant: 14.90, rating: 17.90, playTime: "2077-11-11\n20:28:37", JCcount: 3500, JCount: num - 1, ACount: num == 1 ? num - 1 : num - 2, MCount: num <= 2 ? 0 : num - 3)
+                let song = r10Song![num - 1]
+                SongCardJudge(songName: song.songName, number: num, diffID: song.level, score: song.score, constant: song.constant, rating: song.rating, playTime: song.playDate!, JCcount: song.judge![0], JCount: song.judge![1], ACount: song.judge![2], MCount: song.judge![3])
             }
         }
         .navigationTitle("Recent 10")

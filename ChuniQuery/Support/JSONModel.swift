@@ -61,3 +61,14 @@ struct SongInfoElements: Codable {
     let constant: [Int]
 }
 typealias SongInfoModel = [String: SongInfoElements]
+
+struct GameplayRecordElement {
+    let songName: String
+    let level: Int
+    let score: Int
+    let constant: Double
+    let rating: Double
+    let playDate: Date?
+    let judge: [Int]?
+}
+typealias GameplayRecordModel = [GameplayRecordElement]

@@ -102,8 +102,8 @@
 		7F70FF092737DA3C00B416BF /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				7F70FF0A2737DA6100B416BF /* MinimeQuery.swift */,
 				7FB4DD512738D01F003843B3 /* JSONModel.swift */,
+				7F70FF0A2737DA6100B416BF /* MinimeQuery.swift */,
 				7F2844E6273E8DF900143488 /* Util.swift */,
 			);
 			path = Support;

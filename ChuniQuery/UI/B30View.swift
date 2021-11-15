@@ -8,18 +8,23 @@
 import SwiftUI
 
 struct B30View: View {
+    
+    var b30Song: GameplayRecordModel?
+    var b30RT: Double?
+    
     var body: some View {
         List {
             Section {
                 HStack {
                     Text("Rating")
                     Spacer()
-                    Text("B30 Rating")
+                    Text(b30RT == nil ? "" : String(format: "%.2f", b30RT!))
                         .foregroundColor(.gray)
                 }
             }
-            ForEach(1..<10) { num in
-                SongCardNoJudge(songName: "World Vanquisher", number: num, diffID: String(num % 4), score: 1010000, constant: 14.90, rating: 17.90)
+            ForEach(1..<31) { num in
+                let song = b30Song![num - 1]
+                SongCardNoJudge(songName: song.songName, number: num, diffID: song.level, score: song.score, constant: song.constant, rating: song.rating)
             }
         }
         .navigationTitle("Best 30")

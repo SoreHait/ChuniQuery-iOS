@@ -28,6 +28,8 @@ struct MainView: View {
     @State private var isUserDataFetched: Bool = false
     @State private var isWrongCard: Bool = false
     @State private var unableToFetch: Bool = false
+    @State private var isRecentFetched: Bool = false
+    @State private var isBestFetched: Bool = false
     
     @State private var userName: String?
     @State private var userTeamName: String?
@@ -37,6 +39,12 @@ struct MainView: View {
     @State private var playCount: String?
     @State private var firstPlayTime: Date?
     @State private var lastPlayTime: Date?
+    
+    @State private var playLog: GameplayRecordModel?
+    @State private var recent10: GameplayRecordModel?
+    @State private var best30: GameplayRecordModel?
+    @State private var recent10RT: Double?
+    @State private var best30RT: Double?
     
     var body: some View {
         NavigationView {
@@ -107,31 +115,31 @@ struct MainView: View {
                 }
                 
                 Section(header: Text("RATING分析")) {
-                    NavigationLink(destination: B30View()) {
+                    NavigationLink(destination: B30View(b30Song: best30, b30RT: best30RT)) {
                         HStack {
                             Text("Best 30")
                             Spacer()
-                            Text("B30 Rating") // B30 RT
+                            Text(best30RT == nil ? "" : String(format: "%.2f", best30RT!)) // B30 RT
                                 .foregroundColor(Color.gray)
                         }
                     }
-                    .disabled(!isUserDataFetched || isWrongCard || unableToFetch || isCardIDNotSet)
-                    NavigationLink(destination: R10View()) {
+                    .disabled(!isUserDataFetched || isWrongCard || unableToFetch || isCardIDNotSet || !isBestFetched)
+                    NavigationLink(destination: R10View(r10Song: recent10, r10RT: recent10RT)) {
                         HStack {
                             Text("Recent 10")
                             Spacer()
-                            Text("R10 Rating") // R10 RT
+                            Text(recent10RT == nil ? "" : String(format: "%.2f", recent10RT!)) // R10 RT
                                 .foregroundColor(Color.gray)
                         }
                     }
-                    .disabled(!isUserDataFetched || isWrongCard || unableToFetch || isCardIDNotSet)
+                    .disabled(!isUserDataFetched || isWrongCard || unableToFetch || isCardIDNotSet || !isRecentFetched)
                 }
                 
                 Section {
-                    NavigationLink(destination: RecentPlayView()) {
+                    NavigationLink(destination: RecentPlayView(playLog: playLog)) {
                         Text("最近游玩记录")
                     }
-                    .disabled(!isUserDataFetched || isWrongCard || unableToFetch || isCardIDNotSet)
+                    .disabled(!isUserDataFetched || isWrongCard || unableToFetch || isCardIDNotSet || !isRecentFetched)
                     NavigationLink(destination: ModTicketCountView()) {
                         Text("修改道具数量")
                     }
@@ -197,19 +205,27 @@ struct MainView: View {
     }
     
     private func reinit() {
-        userName = ""
+        userName = nil
         userTeamName = nil
         userLevel = nil
         userCurrentRating = nil
         userHiRating = nil
+        playLog = nil
+        recent10 = nil
+        best30 = nil
+        recent10RT = nil
+        best30RT = nil
         isUserDataFetched = false
         isWrongCard = false
         unableToFetch = false
+        isRecentFetched = false
+        isBestFetched = false
     }
     
     private func fetchData() {
         getUserData()
         getGeneralData()
+        getPlayData()
     }
     
     private func getUserData() {
@@ -274,6 +290,132 @@ struct MainView: View {
         }
     }
     
+    private func getPlayData() {
+        let decoder = JSONDecoder()
+        let songDB = try? decoder.decode(SongInfoModel.self, from: settings[0].songList ?? Data())
+        var musicRecord: UserMusicModel?
+        provider.request(MultiTarget(MinimeSupportAPI.getMusicInfo(baseURL: settings[0].url!, cardID: settings[0].card!))) { result in
+            switch result {
+            case let .success(resp):
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                musicRecord = try! decoder.decode(UserMusicModel.self, from: resp.data)
+                var musicLog = GameplayRecordModel()
+                for record in musicRecord! {
+                    var songName: String
+                    var allConstant: [Int]
+                    if songDB != nil && songDB![record.musicId] != nil {
+                        songName = songDB![record.musicId]!.songName
+                        allConstant = songDB![record.musicId]!.constant
+                    }
+                    else {
+                        songName = "未知歌曲 #\(record.musicId)"
+                        allConstant = []
+                    }
+                    let level = Int(record.level)!
+                    var constant: Double
+                    if level == 4 || allConstant.isEmpty {
+                        constant = 0.0
+                    }
+                    else {
+                        constant = Double(allConstant[level]) / 100
+                    }
+                    let score = Int(record.scoreMax)!
+                    var rating: Double
+                    if constant == 0.0 {
+                        rating = 0.0
+                    }
+                    else {
+                        rating = calcRating(score: score, constant: constant)
+                    }
+                    musicLog.append(GameplayRecordElement(songName: songName, level: level, score: score, constant: constant, rating: rating, playDate: nil, judge: nil))
+                }
+                musicLog.sort { $0.rating > $1.rating }
+                DispatchQueue.main.async {
+                    best30 = Array(musicLog[0..<30])
+                    var best30TotalRT = 0.0
+                    for item in best30! {
+                        best30TotalRT += item.rating
+                    }
+                    best30RT = best30TotalRT / 30
+                    isBestFetched = true
+                }
+                case .failure(_):
+                    return
+            }
+        }
+        
+        var historyRecord: UserPlaylogModel?
+        provider.request(MultiTarget(MinimeSupportAPI.getPlayLog(baseURL: settings[0].url!, cardID: settings[0].card!))) { result in
+            switch result {
+            case let .success(resp):
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                historyRecord = try? decoder.decode(UserPlaylogModel.self, from: resp.data)
+                var playLogTmp = GameplayRecordModel()
+                for record in historyRecord! {
+                    var songName: String
+                    var allConstant: [Int]
+                    if songDB != nil && songDB![record.musicId] != nil {
+                        songName = songDB![record.musicId]!.songName
+                        allConstant = songDB![record.musicId]!.constant
+                    }
+                    else {
+                        songName = "未知歌曲 #\(record.musicId)"
+                        allConstant = []
+                    }
+                    let level = Int(record.level)!
+                    var constant: Double
+                    if level == 4 || allConstant.isEmpty {
+                        constant = 0.0
+                    }
+                    else {
+                        constant = Double(allConstant[level]) / 100
+                    }
+                    let score = Int(record.score)!
+                    var rating: Double
+                    if constant == 0.0 {
+                        rating = 0.0
+                    }
+                    else {
+                        rating = calcRating(score: score, constant: constant)
+                    }
+                    let playDate = dateFormatter.date(from: record.userPlayDate)
+                    let judge = [Int(record.judgeCritical)!, Int(record.judgeJustice)!, Int(record.judgeAttack)!, Int(record.judgeGuilty)!]
+                    playLogTmp.append(GameplayRecordElement(songName: songName, level: level, score: score, constant: constant, rating: rating, playDate: playDate, judge: judge))
+                }
+                playLogTmp.sort { $0.playDate!.compare($1.playDate!) == .orderedDescending }
+                var recentCount = 30
+                var recent30 = GameplayRecordModel()
+                for record in playLogTmp {
+                    if record.level == 4 {
+                        continue
+                    }
+                    recent30.append(record)
+                    if record.score < 1007500 {
+                        recentCount -= 1
+                    }
+                    if recentCount == 0 {
+                        break
+                    }
+                }
+                recent30.sort { $0.rating > $1.rating }
+                DispatchQueue.main.async {
+                    playLog = playLogTmp
+                    recent10 = Array(recent30[0..<10])
+                    var recent10TotalRT = 0.0
+                    for item in recent10! {
+                        recent10TotalRT += item.rating
+                    }
+                    recent10RT = recent10TotalRT / 10
+                    isRecentFetched = true
+                }
+            case .failure(_):
+                return
+            }
+        }
+    }
+    
     private func getSongList() {
         provider.request(MultiTarget(RediveEstertionAPI.getAllSongData)) { result in
             switch result {
@@ -326,34 +468,5 @@ struct MainView: View {
                 return
             }
         }
-    }
-    
-    private func getColorByRating(_ rating: Int) -> Color {
-        switch rating {
-        case 0..<400: // GREEN
-            return .green
-        case 400..<700: // ORANGE
-            return .orange
-        case 700..<1000: // RED
-            return .red
-        case 1000..<1200: // PURPLE
-            return .purple
-        case 1200..<1300: // COPPER
-            return Color(red: 217/255, green: 111/255, blue: 46/255)
-        case 1300..<1400: // SILVER
-            return Color(red: 92/255, green: 198/255, blue: 255/255)
-        case 1400..<1450: // GOLD
-            return .orange
-        case 1450..<1500: // PLATINUM
-            return .yellow
-        default:
-            return .black
-        }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
     }
 }
