@@ -21,6 +21,7 @@ struct MainView: View {
     private var dateFormatter: DateFormatter {
         let tmp = DateFormatter()
         tmp.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        tmp.locale = Locale(identifier: "zh-CN")
         return tmp
     }
     
