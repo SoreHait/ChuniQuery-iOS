@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7F315CD227368EF900508ABB"
-               BuildableName = "ChuniQueryTests.xctest"
-               BlueprintName = "ChuniQueryTests"
-               ReferencedContainer = "container:ChuniQuery.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7F315CDC27368EF900508ABB"
-               BuildableName = "ChuniQueryUITests.xctest"
-               BlueprintName = "ChuniQueryUITests"
-               ReferencedContainer = "container:ChuniQuery.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

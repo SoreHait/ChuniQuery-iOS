@@ -36,31 +36,35 @@ struct ModifyResultModel: Codable {
     let code, msg: String
 }
 
-enum SongInfoElementRaw: Codable {
-    case integerArray([Int])
-    case string(String)
+public class SongInfoElements: NSObject, NSSecureCoding, Codable {
+    let songName, artist: String
+    let constant: [Int]
 
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let x = try? container.decode([Int].self) {
-            self = .integerArray(x)
-            return
-        }
-        if let x = try? container.decode(String.self) {
-            self = .string(x)
-            return
-        }
-        throw DecodingError.typeMismatch(SongInfoElementRaw.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for SongConstantModelElement"))
+    public static var supportsSecureCoding: Bool {
+        return true
+    }
+    
+    public func encode(with coder: NSCoder) {
+        coder.encode(songName, forKey: "songName")
+        coder.encode(artist, forKey: "artist")
+        coder.encode(constant, forKey: "constant")
+    }
+    
+    public required init?(coder: NSCoder) {
+        songName = coder.decodeObject(of: NSString.self, forKey: "songName")! as String
+        artist = coder.decodeObject(of: NSString.self, forKey: "artist")! as String
+        constant = coder.decodeObject(of: NSArray.self, forKey: "constant") as! [Int]
+    }
+
+    required public init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        songName = try container.decode(String.self)
+        artist = try container.decode(String.self)
+        constant = try container.decode([Int].self)
+        return
     }
 }
-typealias SongInfoModelRaw = [String: [SongInfoElementRaw]]
-
-struct SongInfoElements: Codable {
-    let artist: String
-    let songName: String
-    let constant: [Int]
-}
-typealias SongInfoModel = [String: SongInfoElements]
+public typealias SongInfoModel = [String: SongInfoElements]
 
 struct GameplayRecordElement {
     let songName: String

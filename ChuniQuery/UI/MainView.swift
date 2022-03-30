@@ -292,8 +292,7 @@ struct MainView: View {
     }
     
     private func getPlayData() {
-        let decoder = JSONDecoder()
-        let songDB = try? decoder.decode(SongInfoModel.self, from: settings[0].songList ?? Data())
+        let songDB = settings[0].songList
         var musicRecord: UserMusicModel?
         provider.request(MultiTarget(MinimeSupportAPI.getMusicInfo(baseURL: settings[0].url!, cardID: settings[0].card!))) { result in
             switch result {
@@ -308,22 +307,22 @@ struct MainView: View {
                 var musicLog = GameplayRecordModel()
                 for record in musicRecord! {
                     var songName: String
-                    var allConstant: [Int]
+                    var allConstant: [Int]?
                     if songDB != nil && songDB![record.musicId] != nil {
                         songName = songDB![record.musicId]!.songName
                         allConstant = songDB![record.musicId]!.constant
                     }
                     else {
                         songName = "未知歌曲 #\(record.musicId)"
-                        allConstant = []
+                        allConstant = nil
                     }
                     let level = Int(record.level)!
                     var constant: Double
-                    if level == 4 || allConstant.isEmpty {
+                    if level == 4 || allConstant == nil || allConstant!.isEmpty {
                         constant = 0.0
                     }
                     else {
-                        constant = Double(allConstant[level]) / 100
+                        constant = Double(allConstant![level]) / 100
                     }
                     let score = Int(record.scoreMax)!
                     var rating: Double
@@ -429,48 +428,18 @@ struct MainView: View {
         provider.request(MultiTarget(RediveEstertionAPI.getAllSongData)) { result in
             switch result {
             case let .success(resp):
-                guard var temp = String(data: resp.data, encoding: .utf8) else { return }
+                var temp = String(data: resp.data, encoding: .utf8)!
                 let jsonStart = temp.index(temp.startIndex, offsetBy: 16)
                 temp = String(temp[jsonStart...])
                 let decoder = JSONDecoder()
-                var rawJson: SongInfoModelRaw
+                let data: SongInfoModel
                 do {
-                    rawJson = try decoder.decode(SongInfoModelRaw.self, from: temp.data(using: .utf8)!)
+                    data = try decoder.decode(SongInfoModel.self, from: temp.data(using: .utf8)!)
                 } catch {
                     return
                 }
-                var middleWare = [String : [String : Any]]()
-                for item in rawJson {
-                    let key = item.key
-                    var songName, artist: String
-                    var constant: [Int]
-                    switch item.value[0] {
-                    case let .string(str):
-                        songName = str
-                    case .integerArray(_):
-                        continue
-                    }
-                    switch item.value[1] {
-                    case let .string(str):
-                        artist = str
-                    case .integerArray(_):
-                        continue
-                    }
-                    switch item.value[2] {
-                    case let .integerArray(arr):
-                        constant = arr
-                    case .string(_):
-                        continue
-                    }
-                    middleWare.updateValue([
-                        "songName": songName,
-                        "artist": artist,
-                        "constant": constant
-                    ], forKey: key)
-                }
-                let serialized = try! JSONSerialization.data(withJSONObject: middleWare)
                 DispatchQueue.main.async {
-                    settings[0].songList = serialized
+                    settings[0].songList = data
                     persistenceController.save()
                 }
             case .failure(_):
